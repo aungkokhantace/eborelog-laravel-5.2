@@ -59,8 +59,10 @@
 
                                                 <!-- start delete button -->
                                                 <form class="delete_form" action="/roles/{{$role->id}}" method="post">
-                                                    @method('DELETE')
-                                                    @csrf
+                                                    <!-- form method spoofing -->
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                                     <button type="submit" class="btn btn-danger delete_button">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>

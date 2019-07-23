@@ -55,8 +55,10 @@
                                             <div class="btn-group float-right" role="group">
                                                 <a href="/permissions/{{$permission->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>
                                                 <form class="delete_form" action="/permissions/{{$permission->id}}" method="post">
-                                                    @method('DELETE')
-                                                    @csrf
+                                                    <!-- form method spoofing -->
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                                     <button type="submit" class="btn btn-danger delete_button">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>

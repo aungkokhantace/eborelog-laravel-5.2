@@ -147,10 +147,12 @@ class RoleController extends Controller
 
         foreach ($all_permissions as $all_permission) {
             $all_permission->checked = false;
-            foreach ($permissions_for_role as $permission_for_role) {
-                // if $permission_for_role is included in the all_permission_id array, set flag to true, else, false.
-                if ($all_permission->id == $permission_for_role['id']) {
-                    $all_permission->checked = true;
+            if (isset($permissions_for_role) && count($permissions_for_role) > 0) {
+                foreach ($permissions_for_role as $permission_for_role) {
+                    // if $permission_for_role is included in the all_permission_id array, set flag to true, else, false.
+                    if ($all_permission->id == $permission_for_role['id']) {
+                        $all_permission->checked = true;
+                    }
                 }
             }
         }
@@ -184,7 +186,7 @@ class RoleController extends Controller
         $checked_permissions = array_keys($all_checkbox_values, "on");
 
         /* delete all old permissions for the given role */
-        DB::table('permission_role')->where('role_id', $id)->delete();
+        DB::table('role_permissions')->where('role_id', $id)->delete();
 
         /* array to store records to be inserted into database */
         $records = array();
@@ -196,7 +198,7 @@ class RoleController extends Controller
         }
 
         /* insert updated permissions for the given role */
-        DB::table('permission_role')->insert($records);
+        DB::table('role_permissions')->insert($records);
 
         return redirect()->action('RoleController@index')->with('status', "Permissions updated");
     }

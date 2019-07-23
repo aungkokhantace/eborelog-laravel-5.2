@@ -2,4 +2,5 @@
 @include('layouts.partials.navbar')
 @include('layouts.partials.sidebar')
 @yield('content')
+@yield('page_script')
 @include('layouts.partials.footer')

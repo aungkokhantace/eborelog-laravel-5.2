@@ -33,12 +33,23 @@
 <script src="/template/js/dataTables.bootstrap4.js"></script>
 <!-- End custom js for this page-->
 
+<!-- start jquery -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> -->
+<!-- end jquery -->
+
 <!-- start customized js -->
 <script src="/js/form_actions.js"></script>
 <!-- end customized js -->
 
 <!-- sweet-alert js using content delivery network (CDN) -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- start jquery validation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+<!-- end jquery validation -->
 
 <script>
   $(document).ready(function() {
