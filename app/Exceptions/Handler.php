@@ -45,6 +45,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        //if exception code is 403, redirect to customized 403 unauthorized error page
+        if ($e->getStatusCode() == "403") {
+            return response()->view('errors.403');
+        }
+
         return parent::render($request, $e);
     }
 }
