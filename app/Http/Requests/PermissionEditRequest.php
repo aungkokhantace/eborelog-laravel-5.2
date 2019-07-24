@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Input;
 
-class PermissionEntryRequest extends FormRequest
+class PermissionEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class PermissionEntryRequest extends FormRequest
         return [
             'permission_module_name' => 'required',
             'permission_action' => 'required',
-            'route_name' => 'required|string|unique:permissions,route_name,NULL,id,method,' . Input::get('method') . ',deleted_at,NULL',
+            'route_name' => 'required|string|unique:permissions,route_name,' . $this->get('id') . ',id,method,' . Input::get('method') . ',deleted_at,NULL',
             'method' => 'required',
         ];
     }
@@ -38,7 +38,7 @@ class PermissionEntryRequest extends FormRequest
             'permission_module_name.required' => 'Module name is required',
             'permission_action.required' => 'Action is required',
             'route_name.required' => 'Route name is required',
-            'route_name.unique' => 'Route name is already occupied',
+            'route_name.unique' => 'Route name and method combination is already occupied',
             'method.required' => 'Form request method is required',
         ];
     }

@@ -38,6 +38,7 @@
                                         <th>Module</th>
                                         <th>Action</th>
                                         <th>Route Name</th>
+                                        <th>Method</th>
                                         <th>Description</th>
                                         <th></th>
                                     </tr>
@@ -50,6 +51,7 @@
                                         <td>{{ $permission->module }}</td>
                                         <td>{{ $permission->action }}</td>
                                         <td>{{ $permission->route_name }}</td>
+                                        <td>{{ $permission->method }}</td>
                                         <td>{{ $permission->description }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">

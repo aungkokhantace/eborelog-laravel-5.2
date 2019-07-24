@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RoleEntryRequest;
+use App\Http\Requests\RoleEditRequest;
 use Illuminate\Support\Facades\Input;
 use App\Models\Role;
 use App\Repositories\Role\RoleRepositoryInterface;
@@ -99,7 +100,8 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleEditRequest $request, $id)
+    // public function update(Request $request, $id)
     {
         /* update the specified object */
         //get validated input

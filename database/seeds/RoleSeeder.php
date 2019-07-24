@@ -11,10 +11,11 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('roles')->truncate();
+        DB::table('roles')->delete();
 
         $records = array(
             ['id' => 1, 'name' => 'Admin', 'description' => 'Admin role can access all programs'],
+            ['id' => 2, 'name' => 'Supervisor', 'description' => 'Supervisor role can access some programs'],
         );
 
         DB::table('roles')->insert($records);

@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exception\NotFoundHttpException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -45,11 +48,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        //if exception code is 403, redirect to customized 403 unauthorized error page
-        if ($e->getStatusCode() == "403") {
-            return response()->view('errors.403');
-        }
+        //for validation error, redirect to create form normally
+        if (!($e instanceof NotFoundHttpException) && !($e instanceof HttpResponseException)) {
+            //if exception code is 403, redirect to customized 403 unauthorized error page
+            if ($e->getStatusCode() == "403") {
 
+                return response()->view('errors.403');
+            }
+        }
         return parent::render($request, $e);
     }
 }

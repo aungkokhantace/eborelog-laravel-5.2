@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleEntryRequest extends FormRequest
+class RoleEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class RoleEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:roles,name,NULL,id,deleted_at,NULL',
+            'name' => 'required|unique:roles,name,' . $this->get('id') . ',id,deleted_at,NULL'
         ];
     }
 

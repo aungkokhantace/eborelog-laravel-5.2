@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Requests\PermissionEntryRequest;
+use App\Http\Requests\PermissionEditRequest;
 use App\Repositories\Permission\PermissionRepositoryInterface;
 use Illuminate\Support\Facades\Input;
 
@@ -100,7 +101,7 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PermissionEditRequest $request, $id)
     {
         /* update the specified object */
         //get validated input

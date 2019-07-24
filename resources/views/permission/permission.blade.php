@@ -64,10 +64,10 @@
                                         <option value="delete" @if($permission->method == 'delete') selected @endif>DELETE</option>
                                         @else
                                         <option selected disabled>Select request method</option>
-                                        <option value="get">GET</option>
-                                        <option value="post">POST</option>
-                                        <option value="put">PUT</option>
-                                        <option value="delete">DELETE</option>
+                                        <option value="get" @if(old("method")=="get" )selected @endif>GET</option>
+                                        <option value="post" @if(old("method")=="post" )selected @endif>POST</option>
+                                        <option value="put" @if(old("method")=="put" )selected @endif>PUT</option>
+                                        <option value="delete" @if(old("method")=="delete" )selected @endif>DELETE</option>
                                         @endif
                                     </select>
 

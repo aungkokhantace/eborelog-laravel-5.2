@@ -15,6 +15,8 @@
                         <form class="forms-sample" id="role_form" method="post" action="/roles/{{$role->id}}">
                             <!-- form method spoofing -->
                             <input type="hidden" name="_method" value="PUT">
+
+                            <input type="hidden" name="id" value="{{$role->id}}">
                             @else
                             <!-- store route -->
                             <form class="forms-sample" id="role_form" method="post" action="/roles">
