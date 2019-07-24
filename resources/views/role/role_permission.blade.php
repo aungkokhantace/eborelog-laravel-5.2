@@ -20,7 +20,7 @@
                         <div class="table-responsive pt-3">
                             <form action="/roles/{{$role->id}}/update_permissions" method="post" id="assign_role_permission" name="assign_role_permission">
 
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ csrf_field() }}
 
                                 <!-- to use in redirect function when clicking cancel button on entry and edit pages -->
                                 <input type="hidden" id="module" name="module" value="roles">

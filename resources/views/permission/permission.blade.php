@@ -14,13 +14,13 @@
                         <!-- update route -->
                         <form class="forms-sample" id="permission_form" method="post" action="/permissions/{{$permission->id}}">
                             <!-- form method spoofing -->
-                            <input type="hidden" name="_method" value="PUT">
+                            {{ method_field('PUT') }}
                             @else
                             <!-- store route -->
                             <form class="forms-sample" id="permission_form" method="post" action="/permissions">
                                 @endif
 
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ csrf_field() }}
 
                                 <!-- to use in redirect function when clicking cancel button on entry and edit pages -->
                                 <input type="hidden" id="module" name="module" value="permissions">

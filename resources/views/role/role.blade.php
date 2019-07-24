@@ -14,7 +14,7 @@
                         <!-- update route -->
                         <form class="forms-sample" id="role_form" method="post" action="/roles/{{$role->id}}">
                             <!-- form method spoofing -->
-                            <input type="hidden" name="_method" value="PUT">
+                            {{ method_field('PUT') }}
 
                             <input type="hidden" name="id" value="{{$role->id}}">
                             @else
@@ -22,7 +22,7 @@
                             <form class="forms-sample" id="role_form" method="post" action="/roles">
                                 @endif
 
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                {{ csrf_field() }}
 
                                 <!-- to use in redirect function when clicking cancel button on entry and edit pages -->
                                 <input type="hidden" id="module" name="module" value="roles">
