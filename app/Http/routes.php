@@ -25,3 +25,6 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
 
     Route::resource('permissions', 'PermissionController');
 });
+
+//test pdf
+Route::get('pdf-test', 'TestController@tcpdfTest')->name('pdf.test');
