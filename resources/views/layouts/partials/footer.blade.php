@@ -51,6 +51,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
 <!-- end jquery validation -->
 
+<!-- start signature-pad -->
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+<!-- end signature-pad -->
+
 <script>
   $(document).ready(function() {
     // for flash alert to disapper automatically after timeout

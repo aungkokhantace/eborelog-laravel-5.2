@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,6 +13,7 @@
 */
 
 Route::auth();
+
 
 Route::group(['middleware' => ['auth', 'role-permission']], function () {
     // Route::group(['middleware' => ['auth']], function () {
@@ -27,4 +29,6 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
 });
 
 //test pdf
-Route::get('pdf-test', 'TestController@tcpdfTest')->name('pdf.test');
+Route::get('pdf_test', 'TestController@tcpdfTest')->name('pdf.test');
+Route::get('signature_test', 'TestController@createSignatureTest')->name('signature.create');
+Route::post('signature_save', 'TestController@saveSignatureTest')->name('signature.save');

@@ -143,7 +143,8 @@
                 <h1>PDF</h1>
             </div>
             <h2>Hello {{$name}} !</h2>
-            <img src="/images/fosta-logo.png" alt="logo">
+            <img src="/images/fosta-logo.png" alt="logo"><br>
+            <img src="/signature_images/5d3aad74bbcda.png" alt="signature">
         </div>
     </div>
 </body>
