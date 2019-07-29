@@ -11,7 +11,7 @@ class RolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('role_permissions')->truncate();
+        DB::table('role_permissions')->delete();
 
         $records = array(
             // start admin permissions

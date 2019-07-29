@@ -11,6 +11,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('role_permissions')->delete();
         DB::table('roles')->delete();
 
         $records = array(
