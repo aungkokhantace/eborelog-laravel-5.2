@@ -1,0 +1,67 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateStratigraphySoilLayerTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('stratigraphy_soil_layer', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('bore_hole_id');
+            $table->string('sample_id');
+            $table->string('sample_name');
+            $table->string('type');
+            $table->string('type_short_form');
+            $table->double('previous_bottom_depth');
+            $table->double('depth');
+            $table->double('bottom_depth');
+            $table->string('color_from_1');
+            $table->string('color_from_2');
+            $table->string('color_from_3');
+            $table->string('color_joint');
+            $table->string('color_to_1');
+            $table->string('color_to_2');
+            $table->string('color_to_3');
+            $table->string('group_name');
+            $table->string('classification');
+            $table->string('major_formation');
+            $table->string('minor_formation');
+            $table->string('code');
+            $table->string('minor_percent_1');
+            $table->string('minor_constituent_1');
+            $table->string('minor_percent_2');
+            $table->string('minor_constituent_2');
+            $table->string('minor_percent_3');
+            $table->string('minor_constituent_3');
+            $table->string('structure');
+            $table->string('depositional_environment');
+            $table->longText('comments');
+            $table->string('line_type');
+            $table->string('graphic');
+
+            $table->integer('created_by')->default(1);
+            $table->integer('updated_by')->default(1);
+            $table->integer('deleted_by')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('stratigraphy_soil_layer');
+    }
+}
