@@ -15,8 +15,11 @@ class RolePermissionSeeder extends Seeder
 
         $records = array(
             // start admin permissions
+
+            // home page
             ['role_id' => 1, 'permission_id' => 1],
 
+            // roles
             ['role_id' => 1, 'permission_id' => 11],
             ['role_id' => 1, 'permission_id' => 12],
             ['role_id' => 1, 'permission_id' => 13],
@@ -26,12 +29,23 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 17],
             ['role_id' => 1, 'permission_id' => 18],
 
+            // permissions
             ['role_id' => 1, 'permission_id' => 21],
             ['role_id' => 1, 'permission_id' => 22],
             ['role_id' => 1, 'permission_id' => 23],
             ['role_id' => 1, 'permission_id' => 24],
             ['role_id' => 1, 'permission_id' => 25],
             ['role_id' => 1, 'permission_id' => 26],
+
+            // users
+            ['role_id' => 1, 'permission_id' => 31],
+            ['role_id' => 1, 'permission_id' => 32],
+            ['role_id' => 1, 'permission_id' => 33],
+            ['role_id' => 1, 'permission_id' => 34],
+            ['role_id' => 1, 'permission_id' => 35],
+            ['role_id' => 1, 'permission_id' => 36],
+
+            // end admin permissions
         );
 
         DB::table('role_permissions')->insert($records);

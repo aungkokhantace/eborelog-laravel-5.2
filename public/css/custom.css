@@ -5,3 +5,7 @@
 .error {
     color: red;
 }
+
+.black_text {
+    color: black !important;
+}

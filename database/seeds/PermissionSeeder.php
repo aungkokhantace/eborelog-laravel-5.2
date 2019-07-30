@@ -31,6 +31,13 @@ class PermissionSeeder extends Seeder
             ['id' => '24', 'module' => 'Permission', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'permissions.edit', 'method' => 'get'],
             ['id' => '25', 'module' => 'Permission', 'action' => 'Update', 'description' => 'Update permission', 'route_name' => 'permissions.update', 'method' => 'put'],
             ['id' => '26', 'module' => 'Permission', 'action' => 'Delete', 'description' => 'Delete permission', 'route_name' => 'permissions.destroy', 'method' => 'delete'],
+
+            ['id' => '31', 'module' => 'User', 'action' => 'List', 'description' => 'Display user list', 'route_name' => 'users.index', 'method' => 'get'],
+            ['id' => '32', 'module' => 'User', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'users.create', 'method' => 'get'],
+            ['id' => '33', 'module' => 'User', 'action' => 'Store', 'description' => 'Store a new permission', 'route_name' => 'users.store', 'method' => 'post'],
+            ['id' => '34', 'module' => 'User', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'users.edit', 'method' => 'get'],
+            ['id' => '35', 'module' => 'User', 'action' => 'Update', 'description' => 'Update user', 'route_name' => 'users.update', 'method' => 'put'],
+            ['id' => '36', 'module' => 'User', 'action' => 'Delete', 'description' => 'Delete user', 'route_name' => 'users.destroy', 'method' => 'delete'],
         );
 
         if (isset($existingPermissions) && count($existingPermissions) > 0) {

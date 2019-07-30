@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Nationality extends Model
 {
     use SoftDeletes;
 
@@ -16,7 +16,7 @@ class Role extends Model
      */
 
     protected $fillable = [
-        'name', 'description',
+        'name',
         'created_by', 'updated_by', 'deleted_by',
         'created_at', 'updated_at', 'deleted_at'
     ];
@@ -34,9 +34,4 @@ class Role extends Model
      * @var array
      */
     protected $casts = [];
-
-    public function user()
-    {
-        return $this->hasMany('App\User');
-    }
 }

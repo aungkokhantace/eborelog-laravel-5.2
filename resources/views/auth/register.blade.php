@@ -65,7 +65,7 @@
 
                                 <!-- start role select -->
                                 <div class="form-group">
-                                    <select class="form-control form-control-lg select-left-padding {{$errors->has('role') ? 'is-invalid' :''}}" id="role" name="role">
+                                    <select class="form-control black_text form-control-lg select-left-padding {{$errors->has('role') ? 'is-invalid' :''}}" id="role" name="role">
                                         <!-- default -->
                                         <option selected disabled>Select User Role</option>
                                         @foreach($roles as $role)

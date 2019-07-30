@@ -2,46 +2,23 @@
 
 /**
  * Author: Aung Ko Khant
- * Date: 2019-07-05
- * Time: 09:32 AM
+ * Date: 2019-07-30
+ * Time: 02:18 PM
  */
 
-namespace App\Repositories\User;
+namespace App\Repositories\Nationality;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use App\User;
-use App\Core\Utility;
+use App\Models\Nationality;
 use App\Core\ReturnMessage;
-use Auth;
-use App\Repositories\Permission\PermissionRepository;
+use App\Core\Utility;
+use App\Log\LogCustom;
 
-class UserRepository implements UserRepositoryInterface
+class NationalityRepository implements NationalityRepositoryInterface
 {
-    /* return user object of given ID */
-    public function getObjByID($id)
-    {
-        $user = User::findOrFail($id);
-        return $user;
-    }
-
-    public function getPermissionsByUserId($user_id)
-    {
-        $role_id = Auth::user()->role_id;
-
-        if ($role_id) {
-            $permissionRepo = new PermissionRepository();
-            $permissions = $permissionRepo->getPermissionsByRoleId($role_id);
-
-            if ($permissions) {
-                return $permissions;
-            }
-        }
-        return null;
-    }
     public function getObjs()
     {
-        $objs = User::all();
+        $objs = Nationality::all();
         return $objs;
     }
 
@@ -50,7 +27,7 @@ class UserRepository implements UserRepositoryInterface
         /*
          Retrieve records as array 
          */
-        $table_name = (new User())->getTable();
+        $table_name = (new Nationality())->getTable();
         $arr = DB::select("SELECT * FROM  $table_name WHERE deleted_at IS NULL");
         return $arr;
     }
@@ -65,6 +42,9 @@ class UserRepository implements UserRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
+        /* for logging purpose later */
+        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
+
         try {
             /* add created_by and updated_by value to the object, and save */
             $tempObj = Utility::addCreatedBy($paramObj);
@@ -72,7 +52,7 @@ class UserRepository implements UserRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "User is successfully created";
+            $returnObj['statusMessage'] = "Nationality is successfully created";
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -102,7 +82,7 @@ class UserRepository implements UserRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "User is successfully updated";
+            $returnObj['statusMessage'] = "Nationality is successfully updated";
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -127,7 +107,7 @@ class UserRepository implements UserRepositoryInterface
 
         try {
             /* Retrieve record and add deleted_by value */
-            $tempObj = User::findOrFail($id);
+            $tempObj = Nationality::findOrFail($id);
 
             if (!isset($tempObj)) {
                 // record not found
@@ -139,18 +119,18 @@ class UserRepository implements UserRepositoryInterface
             }
 
             /*  Then, softdelete the record and store the delete result */
-            $delete_result = User::destroy($id);
+            $delete_result = Nationality::destroy($id);
 
             if ($delete_result > 0) {
                 /* if delete_result is greater than 0, this means record is deleted,
                 set statusCode to success, and return */
                 $returnObj['statusCode'] = ReturnMessage::OK;
-                $returnObj['statusMessage'] = "User is successfully deleted";
+                $returnObj['statusMessage'] = "Nationality is successfully deleted";
                 return $returnObj;
             } else {
                 /* Record is not deleted,
                 return with above-predefined INTERNAL_SERVER_ERROR */
-                $returnObj['statusMessage'] = "User is not deleted";
+                $returnObj['statusMessage'] = "Nationality is not deleted";
                 return $returnObj;
             }
         } catch (\Exception $e) {
@@ -159,5 +139,12 @@ class UserRepository implements UserRepositoryInterface
             $returnObj['statusMessage'] = $e->getMessage();
             return $returnObj;
         }
+    }
+
+    public function getObjByID($id)
+    {
+        /* retrieve an object by its id */
+        $result = Nationality::findOrFail($id);
+        return $result;
     }
 }
