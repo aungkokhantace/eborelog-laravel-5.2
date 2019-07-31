@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('role_id');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('phone');
             $table->string('nric');
@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            $table->unique(['email', 'deleted_at']);
         });
     }
 

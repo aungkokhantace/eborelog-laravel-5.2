@@ -92,9 +92,6 @@ class UserRepository implements UserRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
             /* add updated_by value to the object, and save */
             $tempObj = Utility::addUpdatedBy($paramObj);
@@ -122,10 +119,17 @@ class UserRepository implements UserRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
+            /*
+            If the user_id to be deleted is '1'(Super-admin), 
+            Super-admin cannot be deleted.
+            Set the error message and return 
+            */
+            if ($id == 1) {
+                $returnObj['statusMessage'] = "Super-admin cannot be deleted";
+                return $returnObj;
+            }
+
             /* Retrieve record and add deleted_by value */
             $tempObj = User::findOrFail($id);
 

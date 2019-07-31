@@ -38,6 +38,8 @@ class PermissionSeeder extends Seeder
             ['id' => '34', 'module' => 'User', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'users.edit', 'method' => 'get'],
             ['id' => '35', 'module' => 'User', 'action' => 'Update', 'description' => 'Update user', 'route_name' => 'users.update', 'method' => 'put'],
             ['id' => '36', 'module' => 'User', 'action' => 'Delete', 'description' => 'Delete user', 'route_name' => 'users.destroy', 'method' => 'delete'],
+            ['id' => '37', 'module' => 'User', 'action' => 'Show Profile', 'description' => 'Show user profile', 'route_name' => 'user.show_profile', 'method' => 'get'],
+            ['id' => '38', 'module' => 'User', 'action' => 'Update Profile', 'description' => 'Update user profile', 'route_name' => 'user.update_profile', 'method' => 'put'],
         );
 
         if (isset($existingPermissions) && count($existingPermissions) > 0) {

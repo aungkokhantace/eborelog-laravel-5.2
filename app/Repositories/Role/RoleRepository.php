@@ -41,9 +41,6 @@ class RoleRepository implements RoleRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
             /* add created_by and updated_by value to the object, and save */
             $tempObj = Utility::addCreatedBy($paramObj);
@@ -71,9 +68,6 @@ class RoleRepository implements RoleRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
             /* add updated_by value to the object, and save */
             $tempObj = Utility::addUpdatedBy($paramObj);
@@ -100,9 +94,6 @@ class RoleRepository implements RoleRepositoryInterface
         /* initially set to internal server error, will be set to success after object is successfully saved */
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
-
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
 
         try {
             /* Retrieve record and add deleted_by value */

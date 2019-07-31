@@ -38,6 +38,8 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
+                                        <th>NRIC</th>
+                                        <th>Permit No.</th>
                                         <th>Role</th>
                                         <th></th>
                                     </tr>
@@ -50,6 +52,8 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
+                                        <td>{{ $user->nric }}</td>
+                                        <td>{{ $user->permit_no }}</td>
                                         <td>{{ $user->role->name }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserEditRequest extends FormRequest
+class ProfileEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,8 @@ class UserEditRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->get('id') . ',id,deleted_at,NULL',
+            // 'password' => 'required|confirmed|min:6',
+            // 'password_confirmation' => 'required',
             'phone' => 'required|numeric',
             'nric' => 'required|numeric',
             'permit_no' => 'required|numeric',
@@ -40,6 +42,10 @@ class UserEditRequest extends FormRequest
             'name.required' => 'User name is required',
             'email.required' => 'Email is required',
             'email.unique' => 'Email is already occupied',
+            // 'password.required' => 'Password is required',
+            // 'password.confirmed' => 'Passwords do not match',
+            // 'password.min' => 'Password must be at least 6 characters',
+            // 'password_confirmation.required' => 'Password confirmation is required',
             'phone.required' => 'Phone is required',
             'phone.numeric' => 'Phone must be numeric',
             'nric.required' => 'NRIC is required',

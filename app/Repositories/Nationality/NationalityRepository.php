@@ -42,9 +42,6 @@ class NationalityRepository implements NationalityRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
             /* add created_by and updated_by value to the object, and save */
             $tempObj = Utility::addCreatedBy($paramObj);
@@ -72,9 +69,6 @@ class NationalityRepository implements NationalityRepositoryInterface
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
-
         try {
             /* add updated_by value to the object, and save */
             $tempObj = Utility::addUpdatedBy($paramObj);
@@ -101,9 +95,6 @@ class NationalityRepository implements NationalityRepositoryInterface
         /* initially set to internal server error, will be set to success after object is successfully saved */
         $returnObj = array();
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
-
-        /* for logging purpose later */
-        $currentUser = Utility::getCurrentUserID(); //get currently logged in user
 
         try {
             /* Retrieve record and add deleted_by value */

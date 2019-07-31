@@ -71,7 +71,8 @@
                     name: 'Role name is required',
                 },
                 submitHandler: function(form) {
-                    $('input[type="submit"]').attr('disabled', 'disabled');
+                    // disable submit button after first click
+                    $(':submit').prop("disabled", true);
                     form.submit();
                 }
             });

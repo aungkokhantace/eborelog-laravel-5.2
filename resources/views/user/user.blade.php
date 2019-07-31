@@ -45,6 +45,41 @@
                                 </div>
                                 <!-- end email field -->
 
+                                <!-- start 'change password' -->
+                                <div class="form-group">
+                                    <div class=" form-check form-check-success">
+                                        <label class="form-check-label">
+                                            @if(isset($user))
+                                            Change Password ?
+                                            @else
+                                            Set Password ? If not checked, <strong>{{$default_password}}</strong> will be used as default password. You can change the default password in <strong>Config</strong>
+                                            @endif
+                                            <input type="checkbox" id="set_password" name="set_password" class="form-check-input">
+                                        </label>
+                                    </div>
+                                    <!-- validation error message -->
+                                    <p class="text-danger">{{$errors->first('email')}}</p>
+                                </div>
+
+                                <!-- start new password field -->
+                                <div class="form-group new_password_field">
+                                    <label for="password">New Password</label>
+                                    <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' :''}}" id="password" name="password" placeholder="Enter new password">
+                                    <!-- validation error message -->
+                                    <p class=" text-danger">{{$errors->first('password')}}</p>
+                                </div>
+                                <!-- end new password field -->
+
+                                <!-- start confirm new password field -->
+                                <div class="form-group new_password_field">
+                                    <label for="password_confirmation">Confirm New Password</label>
+                                    <input type="password" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' :''}}" id="password_confirmation" name="password_confirmation" placeholder="Confirm new password">
+                                    <!-- validation error message -->
+                                    <p class=" text-danger">{{$errors->first('password_confirmation')}}</p>
+                                </div>
+                                <!-- end confirm new password field -->
+                                <!-- end 'change password' -->
+
                                 <!-- start phone field -->
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
@@ -103,7 +138,7 @@
                                         @if(isset($user))
                                         <!-- start options for edit form -->
                                         @foreach($roles as $role)
-                                        <option value="{{$user->role_id}}" @if($role->id == $user->role_id) selected @endif>{{$role->name}}</option>
+                                        <option value="{{$role->id}}" @if($role->id == $user->role_id) selected @endif>{{$role->name}}</option>
                                         @endforeach
                                         <!-- end options for edit form -->
 
@@ -139,31 +174,74 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //Start Validation for Entry and Edit Form
-            $('#user_form').validate({
+            $('#user_forms').validate({
                 rules: {
                     name: 'required',
                     email: 'required',
-                    phone: 'required',
-                    nric: 'required',
-                    permit_no: 'required',
+                    password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    phone: {
+                        required: true,
+                        number: true
+                    },
+                    nric: {
+                        required: true,
+                        number: true
+                    },
+                    permit_no: {
+                        required: true,
+                        number: true
+                    },
                     nationality_id: 'required',
                     role_id: 'required',
                 },
                 messages: {
                     name: 'User name is required',
                     email: 'Email is required',
-                    phone: 'Phone is required',
-                    nric: 'NRIC is required',
-                    permit_no: 'Permit number is required',
+                    password: {
+                        required: 'Password is required',
+                        minlength: "Password must be at least 6 characters"
+                    },
+                    password_confirmation: {
+                        required: 'Password confirmation is required',
+                        equalTo: "Passwords do not match"
+                    },
+                    phone: {
+                        required: 'Phone is required',
+                        number: 'Phone must be numeric'
+                    },
+                    nric: {
+                        required: 'NRIC is required',
+                        number: 'NRIC must be numeric'
+                    },
+                    permit_no: {
+                        required: 'Permit number is required',
+                        number: 'Permit number must be numeric'
+                    },
                     nationality_id: 'Nationality is required',
                     role_id: 'Role is required',
                 },
                 submitHandler: function(form) {
-                    $('input[type="submit"]').attr('disabled', 'disabled');
+                    // disable submit button after first click
+                    $(':submit').prop("disabled", true);
                     form.submit();
                 }
             });
             //End Validation for Entry and Edit Form
+
+            $('#set_password').change(function() {
+                if ($('#set_password').is(":checked")) {
+                    $(".new_password_field").show();
+                } else {
+                    $(".new_password_field").hide();
+                }
+            });
         });
     </script>
     @endsection

@@ -143,7 +143,7 @@
                 <h1>403</h1>
             </div>
             <h2>Oops! Unauthorized !</h2>
-            <p>Sorry, you are not authorized for this action.</p>
+            <p>Sorry, you do not have permission to perform this action.</p>
             <p><a href="#" onclick="goBack()"> Back </a> </p>
         </div>
     </div>

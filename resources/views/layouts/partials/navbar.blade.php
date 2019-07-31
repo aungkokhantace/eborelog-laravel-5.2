@@ -30,9 +30,10 @@
           <span class="nav-profile-name">{{ Auth::user()->name }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <!-- start logout -->
+          <!-- profile -->
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <!-- logout -->
           <a class="dropdown-item" href="/logout">Logout</a>
-          <!-- end logout -->
         </div>
       </li>
       @endif

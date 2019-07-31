@@ -26,9 +26,9 @@ class UserEntryRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,NULL,id,deleted_at,NULL',
-            'phone' => 'required',
-            'nric' => 'required',
-            'permit_no' => 'required',
+            'phone' => 'required|numeric',
+            'nric' => 'required|numeric',
+            'permit_no' => 'required|numeric',
             'nationality_id' => 'required',
             'role_id' => 'required',
         ];
@@ -41,8 +41,11 @@ class UserEntryRequest extends FormRequest
             'email.required' => 'Email is required',
             'email.unique' => 'Email is already occupied',
             'phone.required' => 'Phone is required',
+            'phone.numeric' => 'Phone must be numeric',
             'nric.required' => 'NRIC is required',
+            'nric.numeric' => 'NRIC must be numeric',
             'permit_no.required' => 'Permit number is required',
+            'permit_no.numeric' => 'Permit number must be numeric',
             'nationality_id.required' => 'Nationality is required',
             'role_id.required' => 'Role is required',
         ];

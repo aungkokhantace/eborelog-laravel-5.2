@@ -3,16 +3,21 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id'
+        'name', 'role_id', 'email', 'password', 'phone', 'nric', 'permit_no', 'nationality_id', 'signature',
+        'created_by', 'updated_by', 'deleted_by',
+        'created_at', 'updated_at', 'deleted_at'
+
     ];
 
     /**
