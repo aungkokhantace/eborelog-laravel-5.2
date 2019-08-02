@@ -2,46 +2,22 @@
 
 /**
  * Author: Aung Ko Khant
- * Date: 2019-07-05
- * Time: 09:32 AM
+ * Date: 2019-08-01
+ * Time: 09:58 AM
  */
 
-namespace App\Repositories\User;
+namespace App\Repositories\Project;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use App\User;
-use App\Core\Utility;
+use App\Models\Project;
 use App\Core\ReturnMessage;
-use Auth;
-use App\Repositories\Permission\PermissionRepository;
+use App\Core\Utility;
 
-class UserRepository implements UserRepositoryInterface
+class ProjectRepository implements ProjectRepositoryInterface
 {
-    /* return user object of given ID */
-    public function getObjByID($id)
-    {
-        $user = User::findOrFail($id);
-        return $user;
-    }
-
-    public function getPermissionsByUserId($user_id)
-    {
-        $role_id = Auth::user()->role_id;
-
-        if ($role_id) {
-            $permissionRepo = new PermissionRepository();
-            $permissions = $permissionRepo->getPermissionsByRoleId($role_id);
-
-            if ($permissions) {
-                return $permissions;
-            }
-        }
-        return null;
-    }
     public function getObjs()
     {
-        $objs = User::all();
+        $objs = Project::all();
         return $objs;
     }
 
@@ -50,7 +26,7 @@ class UserRepository implements UserRepositoryInterface
         /*
          Retrieve records as array 
          */
-        $table_name = (new User())->getTable();
+        $table_name = (new Project())->getTable();
         $arr = DB::select("SELECT * FROM  $table_name WHERE deleted_at IS NULL");
         return $arr;
     }
@@ -72,7 +48,8 @@ class UserRepository implements UserRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "User is successfully created";
+            $returnObj['statusMessage'] = "Project is created successfully";
+            $returnObj['id'] = $tempObj->id;
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -99,7 +76,7 @@ class UserRepository implements UserRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "User is successfully updated";
+            $returnObj['statusMessage'] = "Project is successfully updated";
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -120,18 +97,8 @@ class UserRepository implements UserRepositoryInterface
         $returnObj['statusCode'] = ReturnMessage::INTERNAL_SERVER_ERROR;
 
         try {
-            /*
-            If the user_id to be deleted is '1'(Super-admin), 
-            Super-admin cannot be deleted.
-            Set the error message and return 
-            */
-            if ($id == 1) {
-                $returnObj['statusMessage'] = "Super-admin cannot be deleted";
-                return $returnObj;
-            }
-
             /* Retrieve record and add deleted_by value */
-            $tempObj = User::findOrFail($id);
+            $tempObj = Project::findOrFail($id);
 
             if (!isset($tempObj)) {
                 // record not found
@@ -143,18 +110,18 @@ class UserRepository implements UserRepositoryInterface
             }
 
             /*  Then, softdelete the record and store the delete result */
-            $delete_result = User::destroy($id);
+            $delete_result = Project::destroy($id);
 
             if ($delete_result > 0) {
                 /* if delete_result is greater than 0, this means record is deleted,
                 set statusCode to success, and return */
                 $returnObj['statusCode'] = ReturnMessage::OK;
-                $returnObj['statusMessage'] = "User is successfully deleted";
+                $returnObj['statusMessage'] = "Project is successfully deleted";
                 return $returnObj;
             } else {
                 /* Record is not deleted,
                 return with above-predefined INTERNAL_SERVER_ERROR */
-                $returnObj['statusMessage'] = "User is not deleted";
+                $returnObj['statusMessage'] = "Project is not deleted";
                 return $returnObj;
             }
         } catch (\Exception $e) {
@@ -165,9 +132,10 @@ class UserRepository implements UserRepositoryInterface
         }
     }
 
-    public function getUsersByRoles($role_id_array)
+    public function getObjByID($id)
     {
-        $objs = User::whereIn('role_id', $role_id_array)->get();
-        return $objs;
+        /* retrieve an object by its id */
+        $result = Project::findOrFail($id);
+        return $result;
     }
 }

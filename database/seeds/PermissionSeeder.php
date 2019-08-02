@@ -14,8 +14,10 @@ class PermissionSeeder extends Seeder
         $existingPermissions = DB::select('SELECT id FROM permissions');
 
         $permissions = array(
+            // home page
             ['id' => '1', 'module' => 'Home', 'action' => 'Home Page', 'description' => 'Display home page', 'route_name' => 'home', 'method' => 'get'],
 
+            // roles module
             ['id' => '11', 'module' => 'Role', 'action' => 'List', 'description' => 'Display role list', 'route_name' => 'roles.index', 'method' => 'get'],
             ['id' => '12', 'module' => 'Role', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'roles.create', 'method' => 'get'],
             ['id' => '13', 'module' => 'Role', 'action' => 'Store', 'description' => 'Store a new role', 'route_name' => 'roles.store', 'method' => 'post'],
@@ -25,6 +27,7 @@ class PermissionSeeder extends Seeder
             ['id' => '17', 'module' => 'Role', 'action' => 'Edit Permissions', 'description' => 'Edit permissions for given role', 'route_name' => 'role.edit_permissions', 'method' => 'get'],
             ['id' => '18', 'module' => 'Role', 'action' => 'Update Permissions', 'description' => 'Update permissions for given role', 'route_name' => 'role.update_permissions', 'method' => 'post'],
 
+            // permissions module
             ['id' => '21', 'module' => 'Permission', 'action' => 'List', 'description' => 'Display permission list', 'route_name' => 'permissions.index', 'method' => 'get'],
             ['id' => '22', 'module' => 'Permission', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'permissions.create', 'method' => 'get'],
             ['id' => '23', 'module' => 'Permission', 'action' => 'Store', 'description' => 'Store a new permission', 'route_name' => 'permissions.store', 'method' => 'post'],
@@ -32,6 +35,7 @@ class PermissionSeeder extends Seeder
             ['id' => '25', 'module' => 'Permission', 'action' => 'Update', 'description' => 'Update permission', 'route_name' => 'permissions.update', 'method' => 'put'],
             ['id' => '26', 'module' => 'Permission', 'action' => 'Delete', 'description' => 'Delete permission', 'route_name' => 'permissions.destroy', 'method' => 'delete'],
 
+            // users module
             ['id' => '31', 'module' => 'User', 'action' => 'List', 'description' => 'Display user list', 'route_name' => 'users.index', 'method' => 'get'],
             ['id' => '32', 'module' => 'User', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'users.create', 'method' => 'get'],
             ['id' => '33', 'module' => 'User', 'action' => 'Store', 'description' => 'Store a new permission', 'route_name' => 'users.store', 'method' => 'post'],
@@ -40,6 +44,15 @@ class PermissionSeeder extends Seeder
             ['id' => '36', 'module' => 'User', 'action' => 'Delete', 'description' => 'Delete user', 'route_name' => 'users.destroy', 'method' => 'delete'],
             ['id' => '37', 'module' => 'User', 'action' => 'Show Profile', 'description' => 'Show user profile', 'route_name' => 'user.show_profile', 'method' => 'get'],
             ['id' => '38', 'module' => 'User', 'action' => 'Update Profile', 'description' => 'Update user profile', 'route_name' => 'user.update_profile', 'method' => 'put'],
+
+            // projects module
+            ['id' => '41', 'module' => 'Project', 'action' => 'List', 'description' => 'Display project list', 'route_name' => 'projects.index', 'method' => 'get'],
+            ['id' => '42', 'module' => 'Project', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'projects.create', 'method' => 'get'],
+            ['id' => '43', 'module' => 'Project', 'action' => 'Store', 'description' => 'Store a new project', 'route_name' => 'projects.store', 'method' => 'post'],
+            ['id' => '44', 'module' => 'Project', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'projects.edit', 'method' => 'get'],
+            ['id' => '45', 'module' => 'Project', 'action' => 'Update', 'description' => 'Update project', 'route_name' => 'projects.update', 'method' => 'put'],
+            ['id' => '46', 'module' => 'Project', 'action' => 'Delete', 'description' => 'Delete project', 'route_name' => 'projects.destroy', 'method' => 'delete'],
+            ['id' => '47', 'module' => 'Project', 'action' => 'Detail', 'description' => 'Display project detail', 'route_name' => 'projects.show', 'method' => 'get'],
         );
 
         if (isset($existingPermissions) && count($existingPermissions) > 0) {

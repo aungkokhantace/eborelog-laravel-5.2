@@ -17,7 +17,14 @@ class ConfigRepository implements ConfigRepositoryInterface
 {
     public function getDefaultUserPassword()
     {
-        $configObj = Config::whereCode('default_user_password')->first();
+        $configObj = Config::whereCode('default_user_password')->whereType('setting')->first();
+        $result = $configObj->value;
+        return $result;
+    }
+
+    public function getRolesAssignedToProjects()
+    {
+        $configObj = Config::whereCode('roles_assigned_to_projects')->whereType('setting')->first();
         $result = $configObj->value;
         return $result;
     }

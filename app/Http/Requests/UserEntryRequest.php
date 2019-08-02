@@ -26,6 +26,8 @@ class UserEntryRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,NULL,id,deleted_at,NULL',
+            'password' => 'required_if:set_password,==,on|confirmed|min:6',
+            'password_confirmation' => 'required_if:set_password,==,on|min:6',
             'phone' => 'required|numeric',
             'nric' => 'required|numeric',
             'permit_no' => 'required|numeric',

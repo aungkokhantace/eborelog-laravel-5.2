@@ -29,7 +29,7 @@
 
                                 <!-- start role name field -->
                                 <div class="form-group">
-                                    <label for="name">Role Name</label>
+                                    <label for="name">Role Name <span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name" name="name" placeholder="Enter role name" value="{{ isset($role)? $role->name : old('name') }}">
                                     <!-- name validation error message -->
                                     <p class="text-danger">{{$errors->first('name')}}</p>

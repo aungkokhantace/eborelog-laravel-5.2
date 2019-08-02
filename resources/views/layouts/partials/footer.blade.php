@@ -13,6 +13,9 @@
 </div>
 <!-- container-scroller -->
 
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
 <!-- plugins:js -->
 <script src="/template/vendors/base/vendor.bundle.base.js"></script>
 <!-- endinject -->
@@ -33,9 +36,6 @@
 <script src="/template/js/dataTables.bootstrap4.js"></script>
 <!-- End custom js for this page-->
 
-<!-- start jquery -->
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> -->
-<!-- end jquery -->
 
 <!-- start customized js -->
 <script src="/js/form_actions.js"></script>
@@ -55,12 +55,13 @@
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 <!-- end signature-pad -->
 
+
 <script>
   $(document).ready(function() {
     // for flash alert to disapper automatically after timeout
     setTimeout(function() {
       $('.alert').fadeOut();
-    }, 2000);
+    }, 5000);
 
     $('.list-view-table').DataTable();
   });

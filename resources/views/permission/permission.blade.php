@@ -27,8 +27,8 @@
 
                                 <!-- start module name field -->
                                 <div class="form-group">
-                                    <label for="permission_module_name">Module</label>
-                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="permission_module_name" name="permission_module_name" placeholder="Enter module name (eg. User/Role/Project)" value="{{ isset($permission)? $permission->module : old('permission_module_name') }}">
+                                    <label for="permission_module_name">Module<span class="required_field">*</span></label>
+                                    <input type="text" class="form-control {{$errors->has('permission_module_name') ? 'is-invalid' :''}}" id="permission_module_name" name="permission_module_name" placeholder="Enter module name (eg. User/Role/Project)" value="{{ isset($permission)? $permission->module : old('permission_module_name') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('permission_module_name')}}</p>
                                 </div>
@@ -36,8 +36,8 @@
 
                                 <!-- start action field -->
                                 <div class="form-group">
-                                    <label for="permission_action">Action</label>
-                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="permission_action" name="permission_action" placeholder="Enter permission action (eg. List, Create, Store, Show, Edit, Update, Delete)" value="{{ isset($permission)? $permission->action : old('permission_action') }}">
+                                    <label for="permission_action">Action<span class="required_field">*</span></label>
+                                    <input type="text" class="form-control {{$errors->has('permission_action') ? 'is-invalid' :''}}" id="permission_action" name="permission_action" placeholder="Enter permission action (eg. List, Create, Store, Show, Edit, Update, Delete)" value="{{ isset($permission)? $permission->action : old('permission_action') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('permission_action')}}</p>
                                 </div>
@@ -45,8 +45,8 @@
 
                                 <!-- start route name field -->
                                 <div class="form-group">
-                                    <label for="route_name">Route Name</label>
-                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="route_name" name="route_name" placeholder="Enter permission route name (eg. role.index, role.create, role.store, role.show, role.edit, role.update, role.destroy)" value="{{ isset($permission)? $permission->route_name : old('route_name') }}">
+                                    <label for="route_name">Route Name<span class="required_field">*</span></label>
+                                    <input type="text" class="form-control {{$errors->has('route_name') ? 'is-invalid' :''}}" id="route_name" name="route_name" placeholder="Enter permission route name (eg. role.index, role.create, role.store, role.show, role.edit, role.update, role.destroy)" value="{{ isset($permission)? $permission->route_name : old('route_name') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('route_name')}}</p>
 
@@ -55,7 +55,7 @@
 
                                 <!-- start route method field -->
                                 <div class="form-group">
-                                    <label for="method">Form Request Method</label>
+                                    <label for="method">Form Request Method<span class="required_field">*</span></label>
                                     <select class="form-control {{$errors->has('method') ? 'is-invalid' :''}}" id="method" name="method">
                                         @if(isset($permission))
                                         <option value="get" @if($permission->method == 'get') selected @endif>GET</option>
@@ -79,7 +79,7 @@
                                 <!-- start description field -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="description" name="description" placeholder="Enter permission description" rows="4">{{ isset($permission)? $permission->description : old('description') }}</textarea>
+                                    <textarea class="form-control {{$errors->has('description') ? 'is-invalid' :''}}" id="description" name="description" placeholder="Enter permission description" rows="4">{{ isset($permission)? $permission->description : old('description') }}</textarea>
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('description')}}</p>
                                 </div>

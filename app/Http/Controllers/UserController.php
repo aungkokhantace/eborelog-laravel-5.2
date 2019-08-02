@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Repositories\Role\RoleRepository;
+use App\Repositories\User\UserRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\Config\ConfigRepository;
 use App\Repositories\Nationality\NationalityRepository;
@@ -19,7 +20,7 @@ use App\Core\Utility;
 
 class UserController extends Controller
 {
-    public function __construct(UserRepository $repo)
+    public function __construct(UserRepositoryInterface $repo)
     {
         $this->repo = $repo;
     }

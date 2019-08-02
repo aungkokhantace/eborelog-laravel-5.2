@@ -15,6 +15,7 @@ class ConfigSeeder extends Seeder
 
         $records = array(
             ['code' => 'default_user_password', 'type' => 'setting', 'value' => 'fosta@123', 'description' => 'Default password for creating users'],
+            ['code' => 'roles_assigned_to_projects', 'type' => 'setting', 'value' => '2', 'description' => 'Roles to be assigned to projects'],
         );
 
         DB::table('config')->insert($records);

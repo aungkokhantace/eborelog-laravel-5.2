@@ -53,7 +53,7 @@
                                 <div class=" form-check form-check-success">
                                     <label class="form-check-label">
                                         Change Password ?
-                                        <input type="checkbox" id="set_password" name="set_password" class="form-check-input">
+                                        <input type="checkbox" id="set_password" name="set_password" class="form-check-input" @if(old("set_password")=="on" ) checked @endif>
                                     </label>
                                 </div>
                                 <!-- validation error message -->
@@ -151,8 +151,13 @@
     @section('page_script')
     <script type="text/javascript">
         $(document).ready(function() {
+            //check on page load, if set_passord is checked, show password fields
+            if ($('#set_password').is(":checked")) {
+                $(".new_password_field").show();
+            }
+
             //Start Validation for Entry and Edit Form
-            $('#profile_forms').validate({
+            $('#profile_form').validate({
                 rules: {
                     name: 'required',
                     email: 'required',
@@ -214,13 +219,15 @@
             });
             //End Validation for Entry and Edit Form
 
-            $('#set_password').change(function() {
-                if ($('#set_password').is(":checked")) {
-                    $(".new_password_field").show();
-                } else {
-                    $(".new_password_field").hide();
-                }
-            });
+
+        });
+
+        $('#set_password').change(function() {
+            if ($('#set_password').is(":checked")) {
+                $(".new_password_field").show();
+            } else {
+                $(".new_password_field").hide();
+            }
         });
     </script>
     @endsection

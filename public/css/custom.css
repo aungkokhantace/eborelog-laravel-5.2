@@ -13,3 +13,7 @@
 .new_password_field {
     display: none;
 }
+
+.required_field {
+    color: red;
+}

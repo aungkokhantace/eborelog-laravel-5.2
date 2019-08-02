@@ -29,7 +29,7 @@
 
                                 <!-- start user name field -->
                                 <div class="form-group">
-                                    <label for="name">User Name</label>
+                                    <label for="name">User Name<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name" name="name" placeholder="Enter user name" value="{{ isset($user)? $user->name : old('name') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('name')}}</p>
@@ -38,7 +38,7 @@
 
                                 <!-- start email field -->
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('email') ? 'is-invalid' :''}}" id="email" name="email" placeholder="Enter email" value="{{ isset($user)? $user->email : old('email') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('email')}}</p>
@@ -54,7 +54,7 @@
                                             @else
                                             Set Password ? If not checked, <strong>{{$default_password}}</strong> will be used as default password. You can change the default password in <strong>Config</strong>
                                             @endif
-                                            <input type="checkbox" id="set_password" name="set_password" class="form-check-input">
+                                            <input type="checkbox" id="set_password" name="set_password" class="form-check-input" @if(old("set_password")=="on" ) checked @endif>
                                         </label>
                                     </div>
                                     <!-- validation error message -->
@@ -63,7 +63,7 @@
 
                                 <!-- start new password field -->
                                 <div class="form-group new_password_field">
-                                    <label for="password">New Password</label>
+                                    <label for="password">New Password<span class="required_field">*</span></label>
                                     <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' :''}}" id="password" name="password" placeholder="Enter new password">
                                     <!-- validation error message -->
                                     <p class=" text-danger">{{$errors->first('password')}}</p>
@@ -72,7 +72,7 @@
 
                                 <!-- start confirm new password field -->
                                 <div class="form-group new_password_field">
-                                    <label for="password_confirmation">Confirm New Password</label>
+                                    <label for="password_confirmation">Confirm New Password<span class="required_field">*</span></label>
                                     <input type="password" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' :''}}" id="password_confirmation" name="password_confirmation" placeholder="Confirm new password">
                                     <!-- validation error message -->
                                     <p class=" text-danger">{{$errors->first('password_confirmation')}}</p>
@@ -82,7 +82,7 @@
 
                                 <!-- start phone field -->
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
+                                    <label for="phone">Phone<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('phone') ? 'is-invalid' :''}}" id="phone" name="phone" placeholder="Enter phone" value="{{ isset($user)? $user->phone : old('phone') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('phone')}}</p>
@@ -91,7 +91,7 @@
 
                                 <!-- start nric field -->
                                 <div class="form-group">
-                                    <label for="nric">NRIC</label>
+                                    <label for="nric">NRIC<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('nric') ? 'is-invalid' :''}}" id="nric" name="nric" placeholder="Enter NRIC" value="{{ isset($user)? $user->nric : old('nric') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('nric')}}</p>
@@ -100,7 +100,7 @@
 
                                 <!-- start permit_no field -->
                                 <div class="form-group">
-                                    <label for="permit_no">Permit Number</label>
+                                    <label for="permit_no">Permit Number<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('permit_no') ? 'is-invalid' :''}}" id="permit_no" name="permit_no" placeholder="Enter Permit Number" value="{{ isset($user)? $user->permit_no : old('permit_no') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('permit_no')}}</p>
@@ -109,7 +109,7 @@
 
                                 <!-- start nationality_id field -->
                                 <div class="form-group">
-                                    <label for="nationality">Nationality</label>
+                                    <label for="nationality">Nationality<span class="required_field">*</span></label>
                                     <select class="form-control black_text" id="nationality_id" name="nationality_id">
                                         @if(isset($user))
                                         <!-- start options for edit form -->
@@ -133,7 +133,7 @@
 
                                 <!-- start role_id field -->
                                 <div class="form-group">
-                                    <label for="role_id">User Role</label>
+                                    <label for="role_id">User Role<span class="required_field">*</span></label>
                                     <select class="form-control black_text" id="role_id" name="role_id">
                                         @if(isset($user))
                                         <!-- start options for edit form -->
@@ -173,8 +173,13 @@
     @section('page_script')
     <script type="text/javascript">
         $(document).ready(function() {
+            //check on page load, if set_passord is checked, show password fields
+            if ($('#set_password').is(":checked")) {
+                $(".new_password_field").show();
+            }
+
             //Start Validation for Entry and Edit Form
-            $('#user_forms').validate({
+            $('#user_form').validate({
                 rules: {
                     name: 'required',
                     email: 'required',
@@ -235,13 +240,15 @@
             });
             //End Validation for Entry and Edit Form
 
-            $('#set_password').change(function() {
-                if ($('#set_password').is(":checked")) {
-                    $(".new_password_field").show();
-                } else {
-                    $(".new_password_field").hide();
-                }
-            });
+
+        });
+
+        $('#set_password').change(function() {
+            if ($('#set_password').is(":checked")) {
+                $(".new_password_field").show();
+            } else {
+                $(".new_password_field").hide();
+            }
         });
     </script>
     @endsection
