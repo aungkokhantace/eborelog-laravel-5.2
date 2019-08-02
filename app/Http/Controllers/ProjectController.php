@@ -254,7 +254,7 @@ class ProjectController extends Controller
         $users    = $userRepo->getUsersByRoles($role_id_array);
         dd('users', $users);
 
-        return view('role.role')->with('role', $role);
+        return view('project.project')->with('project', $project);
     }
 
     /**
