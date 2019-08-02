@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
 
     /* project module */
     Route::resource('projects', 'ProjectController');
+
+    /* WO module */
+
+    /* BH module */
 });
 
 //test pdf

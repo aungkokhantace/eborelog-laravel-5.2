@@ -103,6 +103,38 @@ class UserController extends Controller
         }
         // end password change
 
+        /* start signature (file upload) */
+        if (isset($role_id) && $role_id == 2) {
+            if (Input::hasFile('signature')) {
+                //to avoid "allowed memory size of 134217728 bytes exhausted" issue
+                ini_set('memory_limit', '256M');
+
+                $file                       = Input::file('signature');
+                $file_extension             = $file->getClientOriginalExtension();
+                $user_name                  = str_replace(" ", "", $name); //remove spaces from user name to use in file name
+                $current_timestamp_string   = date('YmdHis');
+                /* set the file name to store */
+                $file_name                  = $user_name . "_signature_" . $current_timestamp_string . "." . $file_extension;
+
+                /* define path to store file */
+                $path_name                  = '/uploads/supervisor_signtaures/';
+                $full_path                  = public_path() . $path_name;
+
+                $file_path_and_name         = $path_name . $file_name;
+
+                /* create the folder with write permissions if it does not exist */
+                if (!file_exists($full_path)) {
+                    mkdir($full_path, 0777, true);
+                }
+
+                /* move file to destination folder */
+                $file->move($full_path, $file_name);
+            } else {
+                $file_path_and_name = null;
+            }
+        }
+        /* end signature (file upload)*/
+
         //create object
         $paramObj = new User();
         $paramObj->name             = $name;
@@ -113,6 +145,9 @@ class UserController extends Controller
         $paramObj->permit_no        = $permit_no;
         $paramObj->nationality_id   = $nationality_id;
         $paramObj->role_id          = $role_id;
+        if (isset($role_id) && $role_id == 2) {
+            $paramObj->signature    = $file_path_and_name;
+        }
 
         // save the object using repository
         $result = $this->repo->create($paramObj);
@@ -188,6 +223,36 @@ class UserController extends Controller
         $nationality_id = (Input::has('nationality_id')) ? Input::get('nationality_id') : "";
         $role_id        = (Input::has('role_id')) ? Input::get('role_id') : "";
 
+        /* start signature (file upload) */
+        if (isset($role_id) && $role_id == 2) {
+            if (Input::hasFile('signature')) {
+                //to avoid "allowed memory size of 134217728 bytes exhausted" issue
+                ini_set('memory_limit', '256M');
+
+                $file                       = Input::file('signature');
+                $file_extension             = $file->getClientOriginalExtension();
+                $user_name                  = str_replace(" ", "", $name); //remove spaces from user name to use in file name
+                $current_timestamp_string   = date('YmdHis');
+                /* set the file name to store */
+                $file_name                  = $user_name . "_signature_" . $current_timestamp_string . "." . $file_extension;
+
+                /* define path to store file */
+                $path_name                  = '/uploads/supervisor_signtaures/';
+                $full_path                  = public_path() . $path_name;
+
+                $file_path_and_name         = $path_name . $file_name;
+
+                /* create the folder with write permissions if it does not exist */
+                if (!file_exists($full_path)) {
+                    mkdir($full_path, 0777, true);
+                }
+
+                /* move file to destination folder */
+                $file->move($full_path, $file_name);
+            }
+        }
+        /* end signature (file upload)*/
+
         // retrieve object to be updated
         $userObj = $this->repo->getObjByID($id);
 
@@ -203,6 +268,20 @@ class UserController extends Controller
         $userObj->permit_no        = $permit_no;
         $userObj->nationality_id   = $nationality_id;
         $userObj->role_id          = $role_id;
+
+        if (isset($role_id) && $role_id == 2) {
+            // if role is supervisor
+            if (Input::hasFile('signature')) {
+                // and if user uploads a new signature image
+                if (isset($userObj->signature) && $userObj->signature !== "" && $userObj->signature !== null) {
+                    // and if there is old signature already uploaded
+                    /* delete old file, to clear storage space */
+                    unlink(public_path() . $userObj->signature) or die("Couldn't delete old file");
+                }
+                /* bind new image to obj */
+                $userObj->signature    = $file_path_and_name;
+            }
+        }
 
         // update the object using repository
         $result = $this->repo->update($userObj);

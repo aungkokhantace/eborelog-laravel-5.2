@@ -38,8 +38,9 @@
                                         <th>Project ID</th>
                                         <th>Project Name</th>
                                         <th>Client</th>
-                                        <th>Contract No.</th>
-                                        <th>Location</th>
+                                        <th>Has WO?</th>
+                                        <th>Go To</th>
+                                        <th>Notes</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -51,8 +52,21 @@
                                         <td>{{ $project->project_id }}</td>
                                         <td>{{ $project->name }}</td>
                                         <td>{{ $project->client_name }}</td>
-                                        <td>{{ $project->contract_number }}</td>
-                                        <td>{{ $project->location }}</td>
+                                        <td>
+                                            @if($project->has_wo)
+                                            Yes
+                                            @else
+                                            No
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($project->has_wo)
+                                            WO List
+                                            @else
+                                            BH List
+                                            @endif
+                                        </td>
+                                        <td>{{ $project->notes }}</td>
                                         <td>
                                             <div class=" btn-group float-right" role="group">
                                                 <a href="/projects/{{$project->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>

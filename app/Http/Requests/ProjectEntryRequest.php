@@ -31,7 +31,7 @@ class ProjectEntryRequest extends FormRequest
             'contract_number' => 'required|unique:projects,contract_number,NULL,id,deleted_at,NULL',
             'project_start_date' => 'required',
             'location' => 'required_without:has_wo',
-            'location_plan' => 'mimes:jpeg,jpg,png,zip,doc,docx,pdf,xls,xlsx,txt|max:5000',
+            'location_plan' => 'mimes:jpeg,jpg,png,JPEG,JPG,PNG,zip,doc,docx,pdf,xls,xlsx,txt|max:5000',
             'number_of_bh' => 'min:1',
         ];
     }

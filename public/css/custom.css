@@ -17,3 +17,12 @@
 .required_field {
     color: red;
 }
+
+/* 
+.edit_form_image_div {
+    max-width: 100%;
+} */
+
+.edit_form_image {
+    max-width: 100%;
+}

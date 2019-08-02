@@ -68,7 +68,6 @@ class ProjectController extends Controller
     public function store(ProjectEntryRequest $request)
     {
         /* store a new record */
-
         try {
             /*
             get all inputs to get all the user checkboxes 
@@ -241,7 +240,21 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        /* retrieve the object by id and display edit form */
+        $project = $this->repo->getObjByID($id);
+
+        // get users to display in assign_to_users section
+        $configRepo = new ConfigRepository();
+        $roles_to_be_assigned_to_projects = $configRepo->getRolesAssignedToProjects();
+
+        // convert to array
+        $role_id_array = explode(",", $roles_to_be_assigned_to_projects);
+
+        $userRepo = new UserRepository();
+        $users    = $userRepo->getUsersByRoles($role_id_array);
+        dd('users', $users);
+
+        return view('role.role')->with('role', $role);
     }
 
     /**

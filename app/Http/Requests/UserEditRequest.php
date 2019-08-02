@@ -33,6 +33,7 @@ class UserEditRequest extends FormRequest
             'permit_no' => 'required|numeric',
             'nationality_id' => 'required',
             'role_id' => 'required',
+            // 'signature' => 'required_if:role_id,==,2|mimes:jpeg,jpg,png,JPG,JPEG,PNG|max:5000',
         ];
     }
 
@@ -50,6 +51,7 @@ class UserEditRequest extends FormRequest
             'permit_no.numeric' => 'Permit number must be numeric',
             'nationality_id.required' => 'Nationality is required',
             'role_id.required' => 'Role is required',
+            // 'signature.required_if' => 'Signature is required if role is supervisor',
         ];
     }
 }

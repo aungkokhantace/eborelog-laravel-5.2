@@ -134,7 +134,7 @@
                                 <div class="form-group has_wo_field">
                                     <label for="location_plan">Location Plan</label>
                                     <input type="file" class="form-control-file" name="location_plan" id="location_plan" aria-describedby="fileHelp">
-                                    <small id="fileHelp" class="form-text text-muted"> Size of file should not be more than 5MB.</small>
+                                    <small id="fileHelp" class="form-text text-muted"> Size of file should not be more than 5MB. Allowed file types: jpeg,jpg,png,JPEG,JPG,PNG,doc,docx,pdf,xls,xlsx,txt</small>
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('location_plan')}}</p>
                                 </div>

@@ -53,6 +53,12 @@ class PermissionSeeder extends Seeder
             ['id' => '45', 'module' => 'Project', 'action' => 'Update', 'description' => 'Update project', 'route_name' => 'projects.update', 'method' => 'put'],
             ['id' => '46', 'module' => 'Project', 'action' => 'Delete', 'description' => 'Delete project', 'route_name' => 'projects.destroy', 'method' => 'delete'],
             ['id' => '47', 'module' => 'Project', 'action' => 'Detail', 'description' => 'Display project detail', 'route_name' => 'projects.show', 'method' => 'get'],
+
+            // wo module
+            ['id' => '51', 'module' => 'WO', 'action' => 'List', 'description' => 'Display WO List', 'route_name' => 'wo.index', 'method' => 'get'],
+
+            // bore hole module
+            ['id' => '61', 'module' => 'Bore_Hole', 'action' => 'List', 'description' => 'Display bore hole List', 'route_name' => 'bore_hole.index', 'method' => 'get'],
         );
 
         if (isset($existingPermissions) && count($existingPermissions) > 0) {

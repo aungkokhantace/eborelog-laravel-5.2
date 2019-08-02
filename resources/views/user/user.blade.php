@@ -12,14 +12,14 @@
                         <!-- start form -->
                         @if(isset($user))
                         <!-- update route -->
-                        <form class="forms-sample" id="user_form" method="post" action="/users/{{$user->id}}">
+                        <form class="forms-sample" id="user_form" method="post" action="/users/{{$user->id}}" enctype="multipart/form-data">
                             <!-- form method spoofing -->
                             {{ method_field('PUT') }}
 
                             <input type="hidden" name="id" value="{{$user->id}}">
                             @else
                             <!-- store route -->
-                            <form class="forms-sample" id="user_form" method="post" action="/users">
+                            <form class="forms-sample" id="user_form" method="post" action="/users" enctype="multipart/form-data">
                                 @endif
 
                                 {{ csrf_field() }}
@@ -64,7 +64,7 @@
                                 <!-- start new password field -->
                                 <div class="form-group new_password_field">
                                     <label for="password">New Password<span class="required_field">*</span></label>
-                                    <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' :''}}" id="password" name="password" placeholder="Enter new password">
+                                    <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' :''}}" id="password" name="password" placeholder="Enter new password" autocomplete="new-password">
                                     <!-- validation error message -->
                                     <p class=" text-danger">{{$errors->first('password')}}</p>
                                 </div>
@@ -156,6 +156,22 @@
                                 </div>
                                 <!-- end role_id field -->
 
+                                <!-- start signature field -->
+                                <div class="form-group signature_field">
+                                    <label for="signature">Signature</label>
+                                    <input type="file" class="form-control-file" name="signature" id="signature" aria-describedby="fileHelp">
+                                    <small id="fileHelp" class="form-text text-muted"> Size of file should not be more than 5MB. Allowed file types:jpeg,jpg,png,JPG,JPEG,PNG</small>
+                                    <!-- validation error message -->
+                                    <p class="text-danger">{{$errors->first('signature')}}</p>
+                                </div>
+
+                                <div class="col-sm-6 col-md-2">
+                                    @if(isset($user) && isset($user->signature) && $user->signature !== null)
+                                    <img src="{{$user->signature}}" class="edit_form_image">
+                                    @endif
+                                </div>
+                                <!-- end signature field -->
+                                <br>
                                 <!-- start buttons -->
                                 <button type="submit" class="btn btn-primary mr-2">Save</button>
                                 <button id="cancel_button" class="btn btn-light">Cancel</button>
@@ -178,8 +194,16 @@
                 $(".new_password_field").show();
             }
 
+            //check on page load, if role_id is 2, show signature field
+            if ($('#role_id').val() == 2) {
+                $(".signature_field").show();
+            } else {
+
+                $(".signature_field").hide();
+            }
+
             //Start Validation for Entry and Edit Form
-            $('#user_form').validate({
+            $('#user_forms').validate({
                 rules: {
                     name: 'required',
                     email: 'required',
@@ -248,6 +272,15 @@
                 $(".new_password_field").show();
             } else {
                 $(".new_password_field").hide();
+            }
+        });
+
+        $('#role_id').change(function() {
+            // role_id = 2 is supervisor role
+            if ($('#role_id').val() == "2") {
+                $(".signature_field").show();
+            } else {
+                $(".signature_field").hide();
             }
         });
     </script>
