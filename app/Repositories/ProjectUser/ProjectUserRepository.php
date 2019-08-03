@@ -2,8 +2,8 @@
 
 /**
  * Author: Aung Ko Khant
- * Date: 2019-07-05
- * Time: 09:32 AM
+ * Date: 2019-08-03
+ * Time: 08:45 AM
  */
 
 namespace App\Repositories\ProjectUser;
@@ -17,9 +17,21 @@ use Auth;
 
 class ProjectUserRepository implements ProjectUserRepositoryInterface
 {
+    /*
+    get users by project_id 
+     */
     public function getUserIDsByProjectID($project_id)
     {
-        $result = User::whereIn('role_id', $project_id)->get();
+        $result = DB::table('project_user')->where('project_id', $project_id)->pluck('user_id');
+        return $result;
+    }
+
+    /*
+    delete users by project_id 
+     */
+    public function deleteUserIDsByProjectID($project_id)
+    {
+        $result = DB::table('project_user')->where('project_id', $project_id)->delete();
         return $result;
     }
 }

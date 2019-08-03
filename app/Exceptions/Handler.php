@@ -49,11 +49,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $e)
     {
         // dd($e);
-        //for validation error, redirect to create form normally
+        // for validation error, redirect to create form normally
         if (!($e instanceof NotFoundHttpException) && !($e instanceof HttpResponseException)) {
             //if exception code is 403, redirect to customized 403 unauthorized error page
-            if ($e->getStatusCode() == "403") {
-
+            if ($e instanceof UnauthorizedException) {
                 return response()->view('errors.403');
             }
         }

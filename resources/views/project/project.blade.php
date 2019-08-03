@@ -15,6 +15,9 @@
                         <form class="forms-sample" id="project_form" method="post" action="/projects/{{$project->id}}" enctype="multipart/form-data">
                             <!-- form method spoofing -->
                             {{ method_field('PUT') }}
+
+                            <input type="hidden" name="id" value="{{$project->id}}">
+
                             @else
                             <!-- store route -->
                             <form class="forms-sample" id="project_form" method="post" action="/projects" enctype="multipart/form-data">
@@ -68,7 +71,7 @@
                                             <div class=" form-check form-check-success">
                                                 <label class="form-check-label">
                                                     Is soil investigation ?
-                                                    <input type="checkbox" id="is_soil_investigation" name="is_soil_investigation" class="form-check-input" @if(old("is_soil_investigation")=="on" ) checked @endif>
+                                                    <input type="checkbox" id="is_soil_investigation" name="is_soil_investigation" class="form-check-input" @if(old("is_soil_investigation")=="on" ) checked @endif @if(isset($project) && $project->is_soil_investigation == 1) checked @endif>
                                                 </label>
                                             </div>
                                         </div>
@@ -76,7 +79,7 @@
                                             <div class=" form-check form-check-success">
                                                 <label class="form-check-label">
                                                     Is instrumentation ?
-                                                    <input type="checkbox" id="is_instrumentation" name="is_instrumentation" class="form-check-input" @if(old("is_instrumentation")=="on" ) checked @endif>
+                                                    <input type="checkbox" id="is_instrumentation" name="is_instrumentation" class="form-check-input" @if(old("is_instrumentation")=="on" ) checked @endif @if(isset($project) && $project->is_instrumentation == 1) checked @endif>
                                                 </label>
                                             </div>
                                         </div>
@@ -88,7 +91,7 @@
                                 <!-- start 'project_start_date' field -->
                                 <div class="form-group">
                                     <label for="project_start_date">Project Start Date<span class="required_field">*</span></label>
-                                    <input class="start_date form-control" type="text" id="project_start_date" name="project_start_date" readonly placeholder="Select project start date (dd-mm-yyyy)" value="{{old('project_start_date')}}">
+                                    <input class="start_date form-control" type="text" id="project_start_date" name="project_start_date" readonly placeholder="Select project start date (dd-mm-yyyy)" value="{{ isset($project)? $project->project_start_date : old('project_start_date')}}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('project_start_date')}}</p>
                                 </div>
@@ -97,7 +100,7 @@
                                 <!-- start 'project_completion_date' field -->
                                 <div class="form-group">
                                     <label for="project_completion_date">Project Completion Date</label>
-                                    <input class="completion_date form-control" type="text" id="project_completion_date" name="project_completion_date" readonly placeholder="Select project completion date (dd-mm-yyyy)" value="{{old('project_completion_date')}}">
+                                    <input class="completion_date form-control" type="text" id="project_completion_date" name="project_completion_date" readonly placeholder="Select project completion date (dd-mm-yyyy)" value="{{ isset($project)? $project->project_completion_date : old('project_completion_date')}}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('project_completion_date')}}</p>
                                 </div>
@@ -105,8 +108,8 @@
 
                                 <!-- start note field -->
                                 <div class="form-group">
-                                    <label for="note">Note</label>
-                                    <textarea class="form-control {{$errors->has('note') ? 'is-invalid' :''}}" id="note" name="note" placeholder="Enter project note" rows="4">{{ isset($project)? $project->note : old('note') }}</textarea>
+                                    <label for="note">Notes</label>
+                                    <textarea class="form-control {{$errors->has('note') ? 'is-invalid' :''}}" id="note" name="note" placeholder="Enter project note" rows="4">{{ isset($project)? $project->notes : old('note') }}</textarea>
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('note')}}</p>
                                 </div>
@@ -116,7 +119,7 @@
                                 <div class=" form-check form-check-success">
                                     <label class="form-check-label">
                                         Has WO ?
-                                        <input type="checkbox" id="has_wo" name="has_wo" class="form-check-input" @if(old("has_wo")=="on" ) checked @endif>
+                                        <input type="checkbox" id="has_wo" name="has_wo" class="form-check-input" @if(old("has_wo")=="on" ) checked @endif @if(isset($project) && $project->has_wo == 1) checked @endif>
                                     </label>
                                 </div>
                                 <!-- end has_wo checkbox -->
@@ -135,6 +138,9 @@
                                     <label for="location_plan">Location Plan</label>
                                     <input type="file" class="form-control-file" name="location_plan" id="location_plan" aria-describedby="fileHelp">
                                     <small id="fileHelp" class="form-text text-muted"> Size of file should not be more than 5MB. Allowed file types: jpeg,jpg,png,JPEG,JPG,PNG,doc,docx,pdf,xls,xlsx,txt</small>
+                                    @if(isset($project) && isset($project->location_plan))
+                                    <a target="_blank" href="{{ $project->location_plan }}"> <strong> {{ $project->project_id }} Location Plan </strong> </a>
+                                    @endif
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('location_plan')}}</p>
                                 </div>
@@ -161,7 +167,7 @@
                                             <?php $old_user_checkbox_value_string = "user_" . $user->id; ?>
 
                                             <input type="hidden" name="user_{{$user->id}}" value="">
-                                            <input type="checkbox" id="user_{{$user->id}}" name="user_{{$user->id}}" class="form-check-input" @if(old($old_user_checkbox_value_string)=="on" ) checked @endif>
+                                            <input type="checkbox" id="user_{{$user->id}}" name="user_{{$user->id}}" class="form-check-input" @if(old($old_user_checkbox_value_string)=="on" ) checked @endif @if((isset($project)) && (in_array($user->id,$project_user_IDs))) checked @endif>
                                         </label>
                                     </div>
                                     @endforeach

@@ -117,7 +117,7 @@ class UserController extends Controller
                 $file_name                  = $user_name . "_signature_" . $current_timestamp_string . "." . $file_extension;
 
                 /* define path to store file */
-                $path_name                  = '/uploads/supervisor_signtaures/';
+                $path_name                  = '/uploads/supervisor_signatures/';
                 $full_path                  = public_path() . $path_name;
 
                 $file_path_and_name         = $path_name . $file_name;
@@ -234,10 +234,12 @@ class UserController extends Controller
                 $user_name                  = str_replace(" ", "", $name); //remove spaces from user name to use in file name
                 $current_timestamp_string   = date('YmdHis');
                 /* set the file name to store */
+                /* file path is "public/uploads/supervisor_signatures/" */
+                /* Example file name format is "Supervisor1_signature_20190802092835.jpg" */
                 $file_name                  = $user_name . "_signature_" . $current_timestamp_string . "." . $file_extension;
 
                 /* define path to store file */
-                $path_name                  = '/uploads/supervisor_signtaures/';
+                $path_name                  = '/uploads/supervisor_signatures/';
                 $full_path                  = public_path() . $path_name;
 
                 $file_path_and_name         = $path_name . $file_name;
@@ -274,8 +276,8 @@ class UserController extends Controller
             if (Input::hasFile('signature')) {
                 // and if user uploads a new signature image
                 if (isset($userObj->signature) && $userObj->signature !== "" && $userObj->signature !== null) {
-                    // and if there is old signature already uploaded
-                    /* delete old file, to clear storage space */
+                    // and if there is an old signature already uploaded
+                    /* delete the old file, to clear storage space */
                     unlink(public_path() . $userObj->signature) or die("Couldn't delete old file");
                 }
                 /* bind new image to obj */
@@ -321,7 +323,7 @@ class UserController extends Controller
         // get nationalities
         $nationalityRepo = new NationalityRepository();
         $nationalities = $nationalityRepo->getObjs();
-        // dd($user->role_id);
+
         return view('user.profile')
             ->with('user', $user)
             ->with('roles', $roles)

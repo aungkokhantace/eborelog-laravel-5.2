@@ -4,10 +4,11 @@ namespace App\Repositories\ProjectUser;
 
 /**
  * Author: Aung Ko Khant
- * Date: 2019-07-05
- * Time: 09:32 AM
+ * Date: 2019-08-03
+ * Time: 08:45 AM
  */
 interface ProjectUserRepositoryInterface
 {
-    // 
+    public function getUserIDsByProjectID($project_id);
+    public function deleteUserIDsByProjectID($project_id);
 }
