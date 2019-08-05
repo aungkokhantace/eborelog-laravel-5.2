@@ -14,10 +14,14 @@ class RolePermissionSeeder extends Seeder
         DB::table('role_permissions')->delete();
 
         $records = array(
-            // start admin permissions
 
+            /* start admin permissions */
             // home page
             ['role_id' => 1, 'permission_id' => 1],
+
+            // config
+            ['role_id' => 1, 'permission_id' => 5],
+            ['role_id' => 1, 'permission_id' => 6],
 
             // roles
             ['role_id' => 1, 'permission_id' => 11],
@@ -56,16 +60,15 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 46],
             ['role_id' => 1, 'permission_id' => 47],
 
-            //end admin permissions
+            /* end admin permissions */
 
-            // start supervisor permissions
+            /* start supervisor permissions */
             ['role_id' => 2, 'permission_id' => 1],
             ['role_id' => 2, 'permission_id' => 37],
             ['role_id' => 2, 'permission_id' => 38],
 
-            //end supervisor permissions
+            /* end supervisor permissions */
 
-            // end admin permissions
         );
 
         DB::table('role_permissions')->insert($records);

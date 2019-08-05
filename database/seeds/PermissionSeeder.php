@@ -17,6 +17,9 @@ class PermissionSeeder extends Seeder
             // home page
             ['id' => '1', 'module' => 'Home', 'action' => 'Home Page', 'description' => 'Display home page', 'route_name' => 'home', 'method' => 'get'],
 
+            ['id' => '5', 'module' => 'Config', 'action' => 'Edit', 'description' => 'Display config form', 'route_name' => 'config.edit', 'method' => 'get'],
+            ['id' => '6', 'module' => 'Config', 'action' => 'Update', 'description' => 'Update config', 'route_name' => 'config.update', 'method' => 'post'],
+
             // roles module
             ['id' => '11', 'module' => 'Role', 'action' => 'List', 'description' => 'Display role list', 'route_name' => 'roles.index', 'method' => 'get'],
             ['id' => '12', 'module' => 'Role', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'roles.create', 'method' => 'get'],

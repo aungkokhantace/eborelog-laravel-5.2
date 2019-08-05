@@ -22,23 +22,28 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
 
-    /* role module */
+    /* config */
+    Route::get('/config', 'ConfigController@edit')->name('config.edit');
+    Route::post('/config', 'ConfigController@update')->name('config.update');
+
+    /* roles */
     Route::get('/roles/{role}/edit_permissions', 'RoleController@editPermissions')->name('role.edit_permissions');
     Route::post('/roles/{role}/update_permissions', 'RoleController@updatePermissions')->name('role.update_permissions');
     Route::resource('roles', 'RoleController');
 
-    /* permission module */
+    /* permissions */
     Route::resource('permissions', 'PermissionController');
 
-    /* user module */
+    /* users */
     Route::get('/profile', 'UserController@showProfile')->name('user.show_profile');
     Route::put('/profile', 'UserController@updateProfile')->name('user.update_profile');
     Route::resource('users', 'UserController');
 
-    /* project module */
+    /* projects */
     Route::resource('projects', 'ProjectController');
 
     /* WO module */
+    Route::resource('wo', 'WOController');
 
     /* BH module */
 });
