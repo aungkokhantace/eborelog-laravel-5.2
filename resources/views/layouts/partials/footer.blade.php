@@ -58,12 +58,18 @@
 
 <script>
   $(document).ready(function() {
-    // for flash alert to disapper automatically after timeout
+    /* for flash alert to disapper automatically after timeout */
     setTimeout(function() {
       $('.alert').fadeOut();
     }, 5000);
 
+    /* for datatable */
     $('.list-view-table').DataTable();
+
+    /* for tooltips */
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   });
 </script>
 

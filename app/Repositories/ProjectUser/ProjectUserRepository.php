@@ -14,6 +14,7 @@ use App\User;
 use App\Core\Utility;
 use App\Core\ReturnMessage;
 use Auth;
+use App\Models\ProjectUser;
 
 class ProjectUserRepository implements ProjectUserRepositoryInterface
 {
@@ -22,16 +23,28 @@ class ProjectUserRepository implements ProjectUserRepositoryInterface
      */
     public function getUserIDsByProjectID($project_id)
     {
-        $result = DB::table('project_user')->where('project_id', $project_id)->pluck('user_id');
+        $result = DB::table('project_user')
+            ->where('project_id', $project_id)
+            ->whereNull('deleted_at')
+            ->pluck('user_id');
         return $result;
     }
 
     /*
-    delete users by project_id 
+    delete users by project_id
      */
     public function deleteUserIDsByProjectID($project_id)
     {
         $result = DB::table('project_user')->where('project_id', $project_id)->delete();
+        return $result;
+    }
+
+    /*
+    soft-delete users by project_id 
+     */
+    public function softDeleteUserIDsByProjectID($project_id)
+    {
+        $result = ProjectUser::where('project_id', $project_id)->delete();
         return $result;
     }
 }

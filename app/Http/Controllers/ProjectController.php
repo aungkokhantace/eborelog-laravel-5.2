@@ -84,15 +84,19 @@ class ProjectController extends Controller
             $is_soil_investigation      = (Input::has('is_soil_investigation')) ? 1 : 0;
             $is_instrumentation         = (Input::has('is_instrumentation')) ? 1 : 0;
             $project_start_date         = (Input::has('project_start_date')) ? Input::get('project_start_date') : "";
-            $project_completion_date    = (Input::has('project_completion_date')) ? Input::get('project_completion_date') : "";
+            $project_completion_date    = (Input::has('project_completion_date')) ? Input::get('project_completion_date') : null;
             $notes                      = (Input::has('note')) ? Input::get('note') : "";
 
             /* start changing date formats to Y-m-d to store in database */
             if (isset($project_start_date)) {
                 $formatted_project_start_date = date('Y-m-d', strtotime($project_start_date));
+            } else {
+                $formatted_project_start_date = null;
             }
             if (isset($project_completion_date)) {
                 $formatted_project_completion_date = date('Y-m-d', strtotime($project_completion_date));
+            } else {
+                $formatted_project_completion_date = null;
             }
             /* end changing date formats to Y-m-d to store in database */
 
@@ -231,7 +235,48 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            /* get the project object by specified ID */
+            $project = $this->repo->getObjByID($id);
+
+            /* get project_user_IDs by project_id */
+            $projectUserRepo = new ProjectUserRepository();
+            $project_user_IDs   = $projectUserRepo->getUserIDsByProjectID($id);
+
+            if (isset($project_user_IDs) && count($project_user_IDs) > 0) {
+                /* 
+                if there is any user IDs for current project,
+                get user objects by those IDs
+                and bind users to project object
+                 */
+                $userRepo       = new UserRepository();
+                $project_users  = $userRepo->getUsersByIDs($project_user_IDs);
+            } else {
+                /* set project->users to empty array */
+                $project_users = [];
+            }
+
+
+            // get users to display in assign_to_users section
+            $configRepo = new ConfigRepository();
+            $roles_to_be_assigned_to_projects = $configRepo->getRolesAssignedToProjects();
+
+            // convert to array
+            $role_id_array = explode(",", $roles_to_be_assigned_to_projects);
+
+            /* get all users */
+            $userRepo = new UserRepository();
+            $users    = $userRepo->getUsersByRoles($role_id_array);
+
+            return view('project.detail')
+                ->with('project', $project)
+                ->with('project_users', $project_users);
+            // ->with('project_user_IDs', $project_user_IDs)
+            // ->with('users', $users);
+        } catch (\Exception $e) {
+            /* if something went wrong, return to project list page with error message */
+            return redirect()->action('ProjectController@index')->with('status', $e->getMessage());
+        }
     }
 
     /**
@@ -257,11 +302,23 @@ class ProjectController extends Controller
         // convert to array
         $role_id_array = explode(",", $roles_to_be_assigned_to_projects);
 
+        /* get all users */
         $userRepo = new UserRepository();
         $users    = $userRepo->getUsersByRoles($role_id_array);
 
         $projectUserRepo = new ProjectUserRepository();
         $project_user_IDs   = $projectUserRepo->getUserIDsByProjectID($id);
+
+        /* 
+        if project start date or completion date is equal to "01-01-1970" 
+        change date to null
+        */
+        if ($project->project_start_date == "01-01-1970") {
+            $project->project_start_date = null;
+        }
+        if ($project->project_completion_date == "01-01-1970") {
+            $project->project_completion_date = null;
+        }
 
         return view('project.project')
             ->with('project', $project)
@@ -293,15 +350,19 @@ class ProjectController extends Controller
             $is_soil_investigation      = (Input::has('is_soil_investigation')) ? 1 : 0;
             $is_instrumentation         = (Input::has('is_instrumentation')) ? 1 : 0;
             $project_start_date         = (Input::has('project_start_date')) ? Input::get('project_start_date') : "";
-            $project_completion_date    = (Input::has('project_completion_date')) ? Input::get('project_completion_date') : "";
+            $project_completion_date    = (Input::has('project_completion_date')) ? Input::get('project_completion_date') : null;
             $notes                      = (Input::has('note')) ? Input::get('note') : "";
 
             /* start changing date formats to Y-m-d to store in database */
             if (isset($project_start_date)) {
                 $formatted_project_start_date = date('Y-m-d', strtotime($project_start_date));
+            } else {
+                $formatted_project_start_date = null;
             }
             if (isset($project_completion_date)) {
                 $formatted_project_completion_date = date('Y-m-d', strtotime($project_completion_date));
+            } else {
+                $formatted_project_completion_date = null;
             }
             /* end changing date formats to Y-m-d to store in database */
 
@@ -460,6 +521,34 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            /* 
+            to destroy a project,
+            project_users table(which is child of project table) required to be deleted first
+            project will be deleted only after successful deletion of all children
+            */
+
+            /* soft-delete project users by project_id */
+            $projectUserRepo = new ProjectUserRepository();
+            $project_user_deletion_result = $projectUserRepo->softDeleteUserIDsByProjectID($id);
+
+            /* 
+            if project_user deletion is successful,
+            then proceed to delete project
+            */
+
+            /* destroy the model using repository */
+            $result = $this->repo->destroy($id);
+
+            /* after all transaction finished successfully, commit the database */
+            DB::commit();
+
+            return redirect()->action('ProjectController@index')->with('status', $result['statusMessage']);
+        } catch (\Exception $e) {
+            /* if something went wrong, rollback the database */
+            DB::rollBack();
+            return redirect()->action('ProjectController@index')->with('status', $e->getMessage());
+        }
     }
 }

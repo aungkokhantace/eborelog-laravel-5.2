@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
                                 <a href="/permissions/create">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new permission">
                                         <i class="mdi mdi-plus"></i>
                                     </button>
                                 </a>
@@ -55,13 +55,13 @@
                                         <td>{{ $permission->description }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">
-                                                <a href="/permissions/{{$permission->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>
+                                                <a href="/permissions/{{$permission->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this permission"><i class="mdi mdi-pencil"></i></button></a>
                                                 <form class="delete_form" action="/permissions/{{$permission->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger delete_button">
+                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this permission">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>

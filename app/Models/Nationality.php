@@ -9,6 +9,7 @@ class Nationality extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'nationalities';
     /**
      * The attributes that are mass assignable.
      *

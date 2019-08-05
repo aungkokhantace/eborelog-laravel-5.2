@@ -19,7 +19,7 @@
 
                         <!-- start add new button -->
                         <div class="row">
-                            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
+                            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto" data-toggle="tooltip" data-placement="top" title="Create a new role">
                                 <a href="/roles/create">
                                     <button type="button" class="btn btn-primary">
                                         <i class="mdi mdi-plus"></i>
@@ -50,11 +50,11 @@
                                         <td>
                                             <div class="btn-group float-right" role="group">
                                                 <!-- start role permission button -->
-                                                <a href="/roles/{{$role->id}}/edit_permissions"><button type="button" class="btn btn-success"><i class="mdi mdi-account-key"></i></button></a>
+                                                <a href="/roles/{{$role->id}}/edit_permissions"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Update permissions for this role"><i class="mdi mdi-account-key"></i></button></a>
                                                 <!-- end role permission button -->
 
                                                 <!-- start edit button -->
-                                                <a href="/roles/{{$role->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>
+                                                <a href="/roles/{{$role->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this role"><i class="mdi mdi-pencil"></i></button></a>
                                                 <!-- end edit button -->
 
                                                 <!-- start delete button -->
@@ -63,7 +63,7 @@
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger delete_button">
+                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this role">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>

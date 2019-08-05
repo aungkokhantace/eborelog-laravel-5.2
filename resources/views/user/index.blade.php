@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
                                 <a href="/users/create">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new user">
                                         <i class="mdi mdi-plus"></i>
                                     </button>
                                 </a>
@@ -58,7 +58,7 @@
                                         <td>
                                             <div class="btn-group float-right" role="group">
                                                 <!-- start edit button -->
-                                                <a href="/users/{{$user->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>
+                                                <a href="/users/{{$user->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this user"><i class="mdi mdi-pencil"></i></button></a>
                                                 <!-- end edit button -->
 
                                                 <!-- start delete button -->
@@ -67,7 +67,7 @@
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger delete_button">
+                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this user">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>

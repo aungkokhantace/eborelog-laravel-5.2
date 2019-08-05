@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
                                 <a href="/projects/create">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new project">
                                         <i class="mdi mdi-plus"></i>
                                     </button>
                                 </a>
@@ -68,18 +68,25 @@
                                         </td>
                                         <td>{{ $project->notes }}</td>
                                         <td>
+                                            <!-- start button group -->
                                             <div class=" btn-group float-right" role="group">
-                                                <a href="/projects/{{$project->id}}/edit"><button type="button" class="btn btn-secondary"><i class="mdi mdi-pencil"></i></button></a>
+                                                <!-- start role permission button -->
+                                                <a href="/projects/{{$project->id}}"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="View detail"><i class="mdi mdi-file-document-box"></i></button></a>
+                                                <!-- end role permission button -->
+
+                                                <a href="/projects/{{$project->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this project"><i class="mdi mdi-pencil"></i></button></a>
+
                                                 <form class="delete_form" action="/projects/{{$project->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger delete_button">
+                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this project">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>
                                             </div>
+                                            <!-- end button group -->
                                         </td>
                         </div>
                         </td>

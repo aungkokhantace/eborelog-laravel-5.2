@@ -41,8 +41,8 @@ class UserRepository implements UserRepositoryInterface
     }
     public function getObjs()
     {
-        $objs = User::all();
-        return $objs;
+        $result = User::all();
+        return $result;
     }
 
     public function getArrays()
@@ -167,7 +167,13 @@ class UserRepository implements UserRepositoryInterface
 
     public function getUsersByRoles($role_id_array)
     {
-        $objs = User::whereIn('role_id', $role_id_array)->get();
-        return $objs;
+        $result = User::whereIn('role_id', $role_id_array)->get();
+        return $result;
+    }
+
+    public function getUsersByIDs($user_id_array)
+    {
+        $result = User::whereIn('id', $user_id_array)->get();
+        return $result;
     }
 }

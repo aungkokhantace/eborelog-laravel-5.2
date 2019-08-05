@@ -17,6 +17,7 @@ use App\Http\Requests\UserEntryRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\ProfileEditRequest;
 use App\Core\Utility;
+use App\Core\ReturnMessage;
 
 class UserController extends Controller
 {
@@ -302,6 +303,7 @@ class UserController extends Controller
         /* destroy the specified object */
         // destroy the model using repository
         $result = $this->repo->destroy($id);
+
         return redirect()->action('UserController@index')->with('status', $result['statusMessage']);
     }
 
