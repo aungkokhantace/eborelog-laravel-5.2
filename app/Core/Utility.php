@@ -8,17 +8,18 @@ namespace App\Core;
  * Created Time: 09:57 AM
  */
 
-use App\Log\LogCustom;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Auth;
-//use DB;
+use File;
 use App\Http\Requests;
+use App\Log\LogCustom;
+use InterventionImage;
+//use DB;
+use Illuminate\Support\Facades\DB;
 //use App\Session;
 use App\Core\SyncsTable\SyncsTable;
-use InterventionImage;
-use File;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Repositories\Permission\PermissionRepository;
 
 class Utility
 {
@@ -97,5 +98,22 @@ class Utility
         $user = Auth::user();
         $id = $user->id;
         return $id;
+    }
+
+    public static function getPermissionByRoleId($role_id)
+    {
+        if ($role_id) {
+            $permissionRepo = new PermissionRepository();
+            $permissions = $permissionRepo->getPermissionsByRoleId($role_id);
+
+            if ($permissions) {
+                $permission_url_array = array();
+                foreach ($permissions as $permission) {
+                    array_push($permission_url_array, $permission['route_name']);
+                }
+                return $permission_url_array;
+            }
+        }
+        return null;
     }
 }

@@ -1,58 +1,80 @@
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <!-- start dashboard -->
-          <li class="nav-item">
-            <a class="nav-link" href="/home">
-              <i class="mdi mdi-home menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <!-- end dashboard -->
+<?php
+$role_id = App\Core\Utility::getCurrentUserRole();
+$permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
+?>
 
-          <!-- start config -->
-          <li class="nav-item">
-            <a class="nav-link" href="/config">
-              <i class="mdi mdi-cogs menu-icon"></i>
-              <span class="menu-title">Config</span>
-            </a>
-          </li>
-          <!-- end config -->
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  @if(isset($permissions) && count($permissions)>0)
+  <ul class="nav">
+    <!-- start dashboard -->
+    @if(in_array("home", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" href="/home">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    @endif
+    <!-- end dashboard -->
 
-          <!-- start roles/permissions -->
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#role-permission" aria-expanded="false" aria-controls="auth">
-              <i class="mdi mdi-account-key menu-icon"></i>
-              <span class="menu-title">Roles/Permissions</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="role-permission">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/roles"> Roles </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/permissions"> Permissions </a></li>
-              </ul>
-            </div>
-          </li>
-          <!-- end roles/permissions -->
+    <!-- start config -->
+    @if(in_array("config.edit", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" href="/config">
+        <i class="mdi mdi-cogs menu-icon"></i>
+        <span class="menu-title">Config</span>
+      </a>
+    </li>
+    @endif
+    <!-- end config -->
 
-          <!-- start users -->
-          <li class="nav-item">
-            <a class="nav-link" href="/users">
-              <i class="mdi mdi-account-multiple menu-icon"></i>
-              <span class="menu-title">Users</span>
-            </a>
-          </li>
-          <!-- end users -->
-
-          <!-- start projects -->
-          <li class="nav-item">
-            <a class="nav-link" href="/projects">
-              <i class="mdi mdi-briefcase menu-icon"></i>
-              <span class="menu-title">Projects</span>
-            </a>
-          </li>
-          <!-- end projects -->
-
+    <!-- start roles/permissions -->
+    @if(in_array("roles.index", $permissions) ||
+    in_array("permissions.index", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#role-permission" aria-expanded="false" aria-controls="auth">
+        <i class="mdi mdi-account-key menu-icon"></i>
+        <span class="menu-title">Roles/Permissions</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="role-permission">
+        <ul class="nav flex-column sub-menu">
+          @if(in_array("roles.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/roles"> Roles </a></li>
+          @endif
+          @if(in_array("permissions.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/permissions"> Permissions </a></li>
+          @endif
         </ul>
-      </nav>
-      <!-- partial -->
+      </div>
+    </li>
+    @endif
+    <!-- end roles/permissions -->
+
+    <!-- start users -->
+    @if(in_array("users.index", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" href="/users">
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+        <span class="menu-title">Users</span>
+      </a>
+    </li>
+    @endif
+    <!-- end users -->
+
+    <!-- start projects -->
+    @if(in_array("projects.index", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" href="/projects">
+        <i class="mdi mdi-briefcase menu-icon"></i>
+        <span class="menu-title">Projects</span>
+      </a>
+    </li>
+    @endif
+    <!-- end projects -->
+
+  </ul>
+  @endif
+</nav>
+<!-- partial -->
