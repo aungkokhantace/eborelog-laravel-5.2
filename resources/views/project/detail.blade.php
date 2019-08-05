@@ -136,9 +136,10 @@
     @section('page_script')
     <script type="text/javascript">
         $(document).ready(function() {
-                    //check on page load, if has_wo is checked, hide corresponding fields
-                    if ($('#has_wo').is(":checked")) {
-                        $(".has_wo_field").hide();
-                    }
+            //check on page load, if has_wo is checked, hide corresponding fields
+            if ($('#has_wo').is(":checked")) {
+                $(".has_wo_field").hide();
+            }
+        });
     </script>
     @endsection
