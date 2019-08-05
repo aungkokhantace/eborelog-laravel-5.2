@@ -2,20 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+
+use Illuminate\Http\Request;
+use App\Repositories\WO\WORepositoryInterface;
+use App\Repositories\Project\ProjectRepository;
 
 class WOController extends Controller
 {
+    private $repo;
+
+    public function __construct(WORepositoryInterface $repo)
+    {
+        $this->repo = $repo;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($project_id)
     {
-        //
+        /* retrieve the records and return to list view */
+        $wos = $this->repo->getObjsByProjectID($project_id);
+        return view('wo.index')
+            ->with('wos', $wos)
+            ->with('project_id', $project_id);
     }
 
     /**
@@ -23,9 +36,15 @@ class WOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($project_id)
     {
-        //
+        $projectRepo = new ProjectRepository();
+        $project = $projectRepo->getObjByID($project_id);
+        $project_id_name = $project->project_id;
+
+        return view('wo.wo')
+            ->with('project_id', $project_id)
+            ->with('project_id_name', $project_id_name);
     }
 
     /**

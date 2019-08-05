@@ -16,10 +16,11 @@ class CreateProjectWoTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('project_id');
             $table->string('wo_number');
-            $table->integer('number_of_bh');
-            $table->string('location');
+            $table->integer('number_of_bh')->default(0);
+            $table->string('location')->nullable();
+            $table->string('location_plan')->nullable();
             $table->date('wo_start_date');
-            $table->date('wo_completion_date');
+            $table->date('wo_completion_date')->nullable();
 
             $table->integer('created_by')->default(1);
             $table->integer('updated_by')->default(1);

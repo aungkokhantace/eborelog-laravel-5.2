@@ -58,7 +58,13 @@ class PermissionSeeder extends Seeder
             ['id' => '47', 'module' => 'Project', 'action' => 'Detail', 'description' => 'Display project detail', 'route_name' => 'projects.show', 'method' => 'get'],
 
             // wo module
-            ['id' => '51', 'module' => 'WO', 'action' => 'List', 'description' => 'Display WO List', 'route_name' => 'wo.index', 'method' => 'get'],
+            ['id' => '51', 'module' => 'WO', 'action' => 'List', 'description' => 'Display wo list', 'route_name' => 'wo.index', 'method' => 'get'],
+            ['id' => '52', 'module' => 'WO', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'wo.create', 'method' => 'get'],
+            ['id' => '53', 'module' => 'WO', 'action' => 'Store', 'description' => 'Store a new wo', 'route_name' => 'wo.store', 'method' => 'post'],
+            ['id' => '54', 'module' => 'WO', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'wo.edit', 'method' => 'get'],
+            ['id' => '55', 'module' => 'WO', 'action' => 'Update', 'description' => 'Update wo', 'route_name' => 'wo.update', 'method' => 'put'],
+            ['id' => '56', 'module' => 'WO', 'action' => 'Delete', 'description' => 'Delete wo', 'route_name' => 'wo.destroy', 'method' => 'delete'],
+            ['id' => '57', 'module' => 'WO', 'action' => 'Detail', 'description' => 'Display wo detail', 'route_name' => 'wo.show', 'method' => 'get'],
 
             // bore hole module
             ['id' => '61', 'module' => 'Bore_Hole', 'action' => 'List', 'description' => 'Display bore hole List', 'route_name' => 'bore_hole.index', 'method' => 'get'],

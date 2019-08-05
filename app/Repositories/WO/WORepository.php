@@ -139,4 +139,10 @@ class WORepository implements WORepositoryInterface
         $result = WO::findOrFail($id);
         return $result;
     }
+
+    public function getObjsByProjectID($project_id)
+    {
+        $result = WO::where('project_id', $project_id)->get();
+        return $result;
+    }
 }

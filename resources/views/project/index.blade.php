@@ -61,7 +61,7 @@
                                         </td>
                                         <td>
                                             @if($project->has_wo)
-                                            WO List
+                                            <a href="/wo/{{$project->id}}">WO List</a>
                                             @else
                                             BH List
                                             @endif

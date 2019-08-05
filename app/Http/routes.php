@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::post('/config', 'ConfigController@update')->name('config.update');
 
     /* roles */
-    Route::get('/roles/{role}/edit_permissions', 'RoleController@editPermissions')->name('role.edit_permissions');
+    Route::get('/roles/{role}/edit_wo', 'RoleController@editPermissions')->name('role.edit_wo');
     Route::post('/roles/{role}/update_permissions', 'RoleController@updatePermissions')->name('role.update_permissions');
     Route::resource('roles', 'RoleController');
 
@@ -43,7 +43,14 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::resource('projects', 'ProjectController');
 
     /* WO module */
-    Route::resource('wo', 'WOController');
+    Route::get('/wo/{project}', 'WOController@index')->name('wo.index');
+    Route::get('/wo/{project}/create', 'WOController@create')->name('wo.create');
+    Route::post('/wo/{project}/store', 'WOController@store')->name('wo.store');
+    Route::get('/wo/{project}/{wo}', 'WOController@edit')->name('wo.show');
+    Route::get('/wo/{project}/{wo}/edit', 'WOController@edit')->name('wo.edit');
+    Route::put('/wo/{project}/{wo}/update', 'WOController@update')->name('wo.update');
+    Route::delete('/wo/{project}/{wo}/destroy', 'WOController@destroy')->name('wo.destroy');
+    // Route::resource('wo', 'WOController');
 
     /* BH module */
 });
