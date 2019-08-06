@@ -20,21 +20,21 @@
                                         <i class="mdi mdi-bulldozer icon-lg mr-3 text-primary"></i>
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Projects</small>
-                                            <h5 class="mr-2 mb-0">152</h5>
+                                            <h5 class="mr-2 mb-0"> {{isset($project_count)? $project_count : 0 }} </h5>
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                         <i class="mdi mdi-altimeter mr-3 icon-lg text-danger"></i>
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Bore Holes</small>
-                                            <h5 class="mr-2 mb-0">1126</h5>
+                                            <h5 class="mr-2 mb-0">57</h5>
                                         </div>
                                     </div>
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                                         <i class="mdi mdi-account mr-3 icon-lg text-success"></i>
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Users</small>
-                                            <h5 class="mr-2 mb-0">130</h5>
+                                            <h5 class="mr-2 mb-0">{{isset($user_count)? $user_count : 0 }} </h5>
                                         </div>
                                     </div>
                                 </div>
