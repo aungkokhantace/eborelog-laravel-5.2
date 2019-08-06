@@ -12,12 +12,12 @@
                         <!-- start form -->
                         @if(isset($wo))
                         <!-- update route -->
-                        <form class="forms-sample" id="wo_form" method="post" action="/wo/{{$wo->id}}">
+                        <form class="forms-sample" id="wo_form" method="post" action="/wo/{{$project_id}}/{{$wo->id}}/update" enctype="multipart/form-data">
                             <!-- form method spoofing -->
                             {{ method_field('PUT') }}
                             @else
                             <!-- store route -->
-                            <form class="forms-sample" id="wo_form" method="post" action="/wo">
+                            <form class="forms-sample" id="wo_form" method="post" action="/wo/{{$project_id}}/store" enctype="multipart/form-data">
                                 @endif
 
                                 {{ csrf_field() }}
@@ -69,7 +69,7 @@
                                     <input type="file" class="form-control-file" name="location_plan" id="location_plan" aria-describedby="fileHelp">
                                     <small id="fileHelp" class="form-text text-muted"> Size of file should not be more than 5MB. Allowed file types: jpeg,jpg,png,JPEG,JPG,PNG,doc,docx,pdf,xls,xlsx,txt</small>
                                     @if(isset($wo) && isset($wo->location_plan))
-                                    <a target="_blank" href="{{ $project->location_plan }}"> <strong> {{ $wo->project_id }} Location Plan </strong> </a>
+                                    <a target="_blank" href="{{ $wo->location_plan }}"> <strong> {{ $wo->wo_number }} Location Plan </strong> </a>
                                     @endif
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('location_plan')}}</p>
@@ -79,7 +79,7 @@
                                 <!-- start 'wo_start_date' field -->
                                 <div class="form-group">
                                     <label for="wo_start_date">WO Start Date<span class="required_field">*</span></label>
-                                    <input class="start_date form-control" type="text" id="wo_start_date" name="project_start_date" readonly placeholder="Select wo start date (dd-mm-yyyy)" value="{{ isset($wo)? $wo->wo_start_date : old('wo_start_date')}}">
+                                    <input class="start_date form-control" type="text" id="wo_start_date" name="wo_start_date" readonly placeholder="Select wo start date (dd-mm-yyyy)" value="{{ isset($wo)? $wo->wo_start_date : old('wo_start_date')}}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('wo_start_date')}}</p>
                                 </div>
@@ -93,6 +93,27 @@
                                     <p class="text-danger">{{$errors->first('wo_completion_date')}}</p>
                                 </div>
                                 <!-- end 'wo_completion_date' field -->
+
+                                <!-- start assign_to_users field -->
+                                <div class="form-group has_wo_field">
+                                    <label for="users">Assign to users</label>
+                                    @foreach($users as $user)
+                                    <div class=" form-check form-check-success">
+                                        <label class="form-check-label">
+                                            {{$user->name}}
+
+                                            <!-- combine the string to use in old() after validation error -->
+                                            <?php $old_user_checkbox_value_string = "user_" . $user->id; ?>
+
+                                            <input type="hidden" name="user_{{$user->id}}" value="">
+                                            <input type="checkbox" id="user_{{$user->id}}" name="user_{{$user->id}}" class="form-check-input" @if(old($old_user_checkbox_value_string)=="on" ) checked @endif @if((isset($wo)) && (in_array($user->id,$wo_user_IDs))) checked @endif>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                    <!-- validation error message -->
+                                    <p class="text-danger">{{$errors->first('users')}}</p>
+                                </div>
+                                <!-- end assign_to_users field -->
 
                                 <!-- buttons -->
                                 <button type="submit" class="btn btn-primary mr-2">Save</button>
@@ -114,16 +135,18 @@
             //Start Validation for Entry and Edit Form
             $('#wo_form').validate({
                 rules: {
-                    wo_module_name: 'required',
-                    wo_action: 'required',
-                    route_name: 'required',
-                    method: 'required',
+                    wo_number: 'required',
+                    number_of_bh: 'required',
+                    location: 'required',
+                    location_plan: 'required',
+                    wo_start_date: 'required',
                 },
                 messages: {
-                    wo_module_name: 'Module name is required',
-                    wo_action: 'Action is required',
-                    route_name: 'Route name is required',
-                    method: 'Form request method is required',
+                    wo_number: 'WO number is required',
+                    number_of_bh: 'Number of bore holes is required',
+                    location: 'Location is required',
+                    location_plan: 'Location plan is required',
+                    wo_start_date: 'WO start date is required',
                 },
                 submitHandler: function(form) {
                     // disable submit button after first click

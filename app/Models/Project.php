@@ -49,4 +49,9 @@ class Project extends Model
      * @var array
      */
     protected $casts = [];
+
+    public function wo()
+    {
+        return $this->hasMany('App\Models\WO');
+    }
 }

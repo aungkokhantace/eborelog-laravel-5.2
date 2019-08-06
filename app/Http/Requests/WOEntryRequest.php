@@ -24,15 +24,25 @@ class WOEntryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:roles,name,NULL,id,deleted_at,NULL',
+            'wo_number' => 'required|unique:project_wo,wo_number,NULL,id,deleted_at,NULL',
+            'number_of_bh' => 'required|min:1',
+            'wo_start_date' => 'required',
+            'location' => 'required',
+            'location_plan' => 'mimes:jpeg,jpg,png,JPEG,JPG,PNG,zip,doc,docx,pdf,xls,xlsx,txt|max:5000',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Role name is required',
-            'name.unique' => 'Role name is already occupied',
+            'wo_number.required' => 'WO number is required',
+            'wo_number.unique' => 'WO number is already taken',
+            'number_of_bh.required' => 'Number of bore holes is required',
+            'number_of_bh.min' => 'Number is bore holes must be greater than 0',
+            'wo_start_date.required' => 'WO start date is required',
+            'location.required' => 'Location is required',
+            'location_plan.mimes' => 'File extension is invalid. Please upload only the following : jpeg,jpg,png,zip,doc,docx,pdf,xls,xlsx,txt',
+            'location_plan.max' => 'File size should not be more than 5MB',
         ];
     }
 }

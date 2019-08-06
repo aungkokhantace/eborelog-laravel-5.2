@@ -50,28 +50,6 @@
 
     @section('page_script')
     <script type="text/javascript">
-        $(document).ready(function() {
-            //Start Validation for Entry and Edit Form
-            $('#permission_form').validate({
-                rules: {
-                    permission_module_name: 'required',
-                    permission_action: 'required',
-                    route_name: 'required',
-                    method: 'required',
-                },
-                messages: {
-                    permission_module_name: 'Module name is required',
-                    permission_action: 'Action is required',
-                    route_name: 'Route name is required',
-                    method: 'Form request method is required',
-                },
-                submitHandler: function(form) {
-                    // disable submit button after first click
-                    $(':submit').prop("disabled", true);
-                    form.submit();
-                }
-            });
-            //End Validation for Entry and Edit Form
-        });
+        $(document).ready(function() {});
     </script>
     @endsection

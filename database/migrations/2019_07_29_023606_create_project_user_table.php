@@ -17,7 +17,7 @@ class CreateProjectUserTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('project_wo_id');
 
-            $table->unique(array('project_id', 'user_id'));
+            $table->unique(array('project_id', 'user_id', 'project_wo_id'));
 
             $table->integer('created_by')->default(1);
             $table->integer('updated_by')->default(1);

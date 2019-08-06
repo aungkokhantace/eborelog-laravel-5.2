@@ -51,6 +51,7 @@ class WORepository implements WORepositoryInterface
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
             $returnObj['statusMessage'] = "WO is successfully created";
+            $returnObj['id'] = $tempObj->id;
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,

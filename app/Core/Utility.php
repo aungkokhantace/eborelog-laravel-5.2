@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Core\SyncsTable\SyncsTable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\Project\ProjectRepository;
 use App\Repositories\Permission\PermissionRepository;
 
 class Utility
@@ -58,11 +59,13 @@ class Utility
         return $newObj;
     }
 
+    /* create session by given key and value */
     public static function createSession($key, $value)
     {
         Session::put($key, $value);
     }
 
+    /* forget specified session */
     public static function deleteSession($key)
     {
         Session::forget($key);
@@ -81,18 +84,30 @@ class Utility
         }
     }
 
+    /* 
+    parameters : none
+    response : the role_id of currently logged in user
+    */
     public static function getCurrentUserRole()
     {
         $role_id = Auth::user()->role_id;
         return $role_id;
     }
 
+    /* 
+    parameters : none
+    response : the user object of currently logged in user
+    */
     public static function getCurrentUser()
     {
         $user = Auth::user();
         return $user;
     }
 
+    /* 
+    parameters : none
+    response : ID of currently logged in user
+    */
     public static function getCurrentUserID()
     {
         $user = Auth::user();
@@ -100,6 +115,10 @@ class Utility
         return $id;
     }
 
+    /* 
+    parameters : role_id
+    response : all the permissions array of the given role
+    */
     public static function getPermissionByRoleId($role_id)
     {
         if ($role_id) {
@@ -115,5 +134,17 @@ class Utility
             }
         }
         return null;
+    }
+
+    /* 
+    parameters : project_id
+    response : the name of project of the given id
+    */
+    public static function getProjectNameByID($project_id)
+    {
+        $projectRepo = new ProjectRepository();
+        $project = $projectRepo->getObjByID($project_id);
+        $project_name = $project->name;
+        return $project_name;
     }
 }

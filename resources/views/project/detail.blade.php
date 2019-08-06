@@ -128,7 +128,11 @@
                         @endif
 
                         <!-- go back button -->
-                        <a href="/projects"><button type="button" class="btn btn-primary"> Back to project list </button></a>
+                        <a href="/projects">
+                            <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Go back to project list">
+                                <i class="mdi mdi-arrow-left-bold"></i> Project List
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

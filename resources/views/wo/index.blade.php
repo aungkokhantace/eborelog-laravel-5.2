@@ -7,7 +7,10 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">WO LIST</h4>
+                        <!-- get projet name by project_id -->
+                        <?php $project_name = App\Core\Utility::getProjectNameByID($project_id) ?>
+
+                        <h4 class="card-title">WO LIST for {{ $project_name }}</h4>
                         <!-- start alert -->
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -42,9 +45,9 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>#</th>
-                                        <th>Project</th>
                                         <th>WO Number</th>
                                         <th>Number of BH</th>
+                                        <th>Location</th>
                                         <th>Start Date</th>
                                         <th>Completion Date</th>
                                         <th></th>
@@ -55,14 +58,14 @@
                                     @foreach($wos as $wo)
                                     <tr>
                                         <td>{{ $counter }}</td>
-                                        <td>{{ $wo->project_id }}</td>
                                         <td>{{ $wo->wo_number }}</td>
                                         <td>{{ $wo->number_of_bh }}</td>
-                                        <td>{{ $wo->wo_start_date }}</td>
-                                        <td>{{ $wo->wo_completion_date }}</td>
+                                        <td>{{ $wo->location }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($wo->wo_start_date)) }}</td>
+                                        <td>{{ date('d-m-Y', strtotime($wo->wo_completion_date)) }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">
-                                                <a href="/wo/{{$wo->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this wo"><i class="mdi mdi-pencil"></i></button></a>
+                                                <a href="/wo/{{$project_id}}/{{$wo->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this wo"><i class="mdi mdi-pencil"></i></button></a>
                                                 <form class="delete_form" action="/wo/{{$wo->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->

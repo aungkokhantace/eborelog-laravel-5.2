@@ -18,17 +18,6 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     @endif
     <!-- end dashboard -->
 
-    <!-- start config -->
-    @if(in_array("config.edit", $permissions))
-    <li class="nav-item">
-      <a class="nav-link" href="/config">
-        <i class="mdi mdi-cogs menu-icon"></i>
-        <span class="menu-title">Config</span>
-      </a>
-    </li>
-    @endif
-    <!-- end config -->
-
     <!-- start roles/permissions -->
     @if(in_array("roles.index", $permissions) ||
     in_array("permissions.index", $permissions))
@@ -73,6 +62,17 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     </li>
     @endif
     <!-- end projects -->
+
+    <!-- start config -->
+    @if(in_array("config.edit", $permissions))
+    <li class="nav-item">
+      <a class="nav-link" href="/config">
+        <i class="mdi mdi-cogs menu-icon"></i>
+        <span class="menu-title">Config</span>
+      </a>
+    </li>
+    @endif
+    <!-- end config -->
 
   </ul>
   @endif

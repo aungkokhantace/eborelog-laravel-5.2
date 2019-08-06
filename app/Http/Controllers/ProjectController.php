@@ -132,10 +132,10 @@ class ProjectController extends Controller
                     $file_extension             = $file->getClientOriginalExtension();
                     $current_timestamp_string   = date('YmdHis');
                     /* set the file name to store */
-                    $file_name                  = $project_id . "_location_plan_" . $current_timestamp_string . "." . $file_extension;
+                    $file_name                  = "project_" . $project_id . "_location_plan_" . $current_timestamp_string . "." . $file_extension;
 
                     /* define path to store file */
-                    $path_name                  = '/uploads/location_plans/';
+                    $path_name                  = '/uploads/project_location_plans/';
                     $full_path                  = public_path() . $path_name;
 
                     $file_path_and_name         = $path_name . $file_name;
@@ -166,7 +166,7 @@ class ProjectController extends Controller
             $paramObj->is_instrumentation       = $is_instrumentation;
             $paramObj->project_start_date       = $formatted_project_start_date;
             $paramObj->project_completion_date  = $formatted_project_completion_date;
-            $paramObj->notes                     = $notes;
+            $paramObj->notes                    = $notes;
 
             $paramObj->has_wo                   = $has_wo;
 
@@ -205,7 +205,9 @@ class ProjectController extends Controller
                     }
 
                     /* insert records into project_user table */
-                    $project_user_result = DB::table('project_user')->insert($records);
+                    $projectUserRepo = new ProjectUserRepository();
+                    $project_user_result   = $projectUserRepo->insertProjectUsersByArray($records);
+                    // $project_user_result = DB::table('project_user')->insert($records);
 
                     if ($project_user_result == false) {
                         DB::rollBack();
@@ -238,6 +240,10 @@ class ProjectController extends Controller
         try {
             /* get the project object by specified ID */
             $project = $this->repo->getObjByID($id);
+
+            /* change date formats to display in edit form */
+            $project->project_start_date = date('d-m-Y', strtotime($project->project_start_date));
+            $project->project_completion_date = date('d-m-Y', strtotime($project->project_completion_date));
 
             /* get project_user_IDs by project_id */
             $projectUserRepo = new ProjectUserRepository();
@@ -288,7 +294,6 @@ class ProjectController extends Controller
         $project = $this->repo->getObjByID($id);
 
         /* change date formats to display in edit form */
-
         $project->project_start_date = date('d-m-Y', strtotime($project->project_start_date));
         $project->project_completion_date = date('d-m-Y', strtotime($project->project_completion_date));
 
@@ -303,6 +308,7 @@ class ProjectController extends Controller
         $userRepo = new UserRepository();
         $users    = $userRepo->getUsersByRoles($role_id_array);
 
+        /* get user IDs assigned to project */
         $projectUserRepo = new ProjectUserRepository();
         $project_user_IDs   = $projectUserRepo->getUserIDsByProjectID($id);
 
@@ -398,10 +404,10 @@ class ProjectController extends Controller
                     /* set the file name to store */
                     /* Example file name format is "P-1_location_plan_20190802070602.pdf" */
                     /* file path is "public/uploads/location_plans/" */
-                    $file_name                  = $project_id . "_location_plan_" . $current_timestamp_string . "." . $file_extension;
+                    $file_name                  = "project_" . $project_id . "_location_plan_" . $current_timestamp_string . "." . $file_extension;
 
                     /* define path to store file */
-                    $path_name                  = '/uploads/location_plans/';
+                    $path_name                  = '/uploads/project_location_plans/';
                     $full_path                  = public_path() . $path_name;
 
                     $file_path_and_name         = $path_name . $file_name;
@@ -418,12 +424,14 @@ class ProjectController extends Controller
             }
             /* end the fields that exists only if 'has_wo' is not checked */
 
+
             /* to rollback if something is wrong, commit only after all database transactions are successful. */
             DB::beginTransaction();
 
             // retrieve object to be updated
             $projectObj = $this->repo->getObjByID($id);
 
+            /* bind parameters to object */
             $projectObj->project_id               = $project_id;
             $projectObj->name                     = $name;
             $projectObj->client_name              = $client_name;
@@ -432,7 +440,7 @@ class ProjectController extends Controller
             $projectObj->is_instrumentation       = $is_instrumentation;
             $projectObj->project_start_date       = $formatted_project_start_date;
             $projectObj->project_completion_date  = $formatted_project_completion_date;
-            $projectObj->notes                     = $notes;
+            $projectObj->notes                    = $notes;
 
             $projectObj->has_wo                   = $has_wo;
 
@@ -455,6 +463,31 @@ class ProjectController extends Controller
                     $projectObj->location_plan            = $file_path_and_name;
                 }
             }
+
+            /* 
+            if the user checked 'has_wo' in edit form which is previously unchecked,
+            the system have to clear the fields that follows the state of 'has_wo' checkbox
+            the fields to clear are: location, location_plan(have to clear old uploaded file), number_of_bh, project_users
+            */
+            /* start clearing fields when user check 'has_wo' which is previously unchecked */
+            if (isset($has_wo) && $has_wo == 1) {
+                /* bind new location and number_of_bh to object */
+                $projectObj->location                 = null;
+                $projectObj->number_of_bh             = null;
+
+                /* update new file path and name in database */
+                $projectObj->location_plan            = null;
+
+                /* soft-delete project users by project_id */
+                $projectUserRepo = new ProjectUserRepository();
+                $projectUserRepo->softDeleteUserIDsByProjectID($id);
+
+                if (isset($projectObj->location_plan) && $projectObj->location_plan !== "" && $projectObj->location_plan !== null) {
+                    /* delete the old file, to clear storage space */
+                    unlink(public_path() . $projectObj->location_plan) or die("Couldn't delete old file");
+                }
+            }
+            /* end clearing fields when user check 'has_wo' which is previously unchecked */
 
             /* update the object using repository */
             $result = $this->repo->update($projectObj);
@@ -488,7 +521,8 @@ class ProjectController extends Controller
                     $projectUserRepo->deleteUserIDsByProjectID($id);
 
                     /* insert records into project_user table */
-                    $project_user_result = DB::table('project_user')->insert($records);
+                    $projectUserRepo = new ProjectUserRepository();
+                    $project_user_result   = $projectUserRepo->insertProjectUsersByArray($records);
 
                     if ($project_user_result == false) {
                         DB::rollBack();

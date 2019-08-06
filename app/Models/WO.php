@@ -35,4 +35,10 @@ class WO extends Model
      * @var array
      */
     protected $casts = [];
+
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project', 'project_id', 'id');
+    }
 }

@@ -199,7 +199,7 @@
             }
 
             //Start Validation for Entry and Edit Form
-            $('#project_forms').validate({
+            $('#project_form').validate({
                 rules: {
                     project_id: 'required',
                     name: 'required',

@@ -203,7 +203,7 @@
             }
 
             //Start Validation for Entry and Edit Form
-            $('#user_forms').validate({
+            $('#user_form').validate({
                 rules: {
                     name: 'required',
                     email: 'required',
