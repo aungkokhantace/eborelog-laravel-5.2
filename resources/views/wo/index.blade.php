@@ -66,7 +66,7 @@
                                         <td>
                                             <div class="btn-group float-right" role="group">
                                                 <a href="/wo/{{$project_id}}/{{$wo->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this wo"><i class="mdi mdi-pencil"></i></button></a>
-                                                <form class="delete_form" action="/wo/{{$wo->id}}" method="post">
+                                                <form class="delete_form" action="/wo/{{$project_id}}/{{$wo->id}}/destroy" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}

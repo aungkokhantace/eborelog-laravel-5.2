@@ -74,6 +74,17 @@ class ProjectUserRepository implements ProjectUserRepositoryInterface
     }
 
     /*
+    soft-delete users by project_id and wo_id
+     */
+    public function softDeleteUserIDsByProjectIDAndWoID($project_id, $wo_id)
+    {
+        $result = ProjectUser::where('project_id', $project_id)
+            ->where('project_wo_id', $wo_id)
+            ->delete();
+        return $result;
+    }
+
+    /*
     insert project_users by array 
      */
     public function insertProjectUsersByArray($records_array)

@@ -439,8 +439,42 @@ class WOController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($project_id, $id)
     {
-        //
+        try {
+            DB::beginTransaction();
+            /* 
+            to destroy a WO,
+            project_users table(which is a child of WO table) required to be deleted first
+            **** WO will be deleted only after successful deletion of all children
+            */
+
+            /* soft-delete project users by project_id */
+            $projectUserRepo = new ProjectUserRepository();
+            $project_user_deletion_result = $projectUserRepo->softDeleteUserIDsByProjectIDAndWoID($project_id, $id);
+
+            /* 
+            if project_user deletion is successful,
+            then proceed to delete project
+            */
+
+            /* destroy the model using repository */
+            $result = $this->repo->destroy($id);
+
+            if ($result["statusCode"] !== ReturnMessage::OK) {
+                /* if something went wrong, rollback the database */
+                DB::rollBack();
+                return redirect()->action('WOController@index', [$project_id])->with('status', $result["statusMessage"]);
+            }
+
+            /* after all transaction finished successfully, commit the database */
+            DB::commit();
+
+            return redirect()->action('WOController@index', [$project_id])->with('status', $result['statusMessage']);
+        } catch (\Exception $e) {
+            /* if something went wrong, rollback the database */
+            DB::rollBack();
+            return redirect()->action('WOController@index', [$project_id])->with('status', $e->getMessage());
+        }
     }
 }

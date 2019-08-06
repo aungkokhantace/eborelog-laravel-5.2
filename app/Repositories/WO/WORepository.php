@@ -146,4 +146,10 @@ class WORepository implements WORepositoryInterface
         $result = WO::where('project_id', $project_id)->get();
         return $result;
     }
+
+    public function softDeleteByProjectID($project_id)
+    {
+        $result = WO::where('project_id', $project_id)->delete();
+        return $result;
+    }
 }

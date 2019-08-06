@@ -17,6 +17,7 @@ use App\Repositories\Config\ConfigRepository;
 use App\Repositories\Project\ProjectRepository;
 use App\Repositories\ProjectUser\ProjectUserRepository;
 use App\Repositories\Project\ProjectRepositoryInterface;
+use App\Repositories\WO\WORepository;
 
 class ProjectController extends Controller
 {
@@ -556,16 +557,22 @@ class ProjectController extends Controller
             DB::beginTransaction();
             /* 
             to destroy a project,
-            project_users table(which is child of project table) required to be deleted first
-            project will be deleted only after successful deletion of all children
+            project_users table(which is a child of project table) required to be deleted
+            project_wo table(which is a child of project table) required to be deleted
+
+            *** project will be deleted only after successful deletion of all children
             */
 
             /* soft-delete project users by project_id */
             $projectUserRepo = new ProjectUserRepository();
             $project_user_deletion_result = $projectUserRepo->softDeleteUserIDsByProjectID($id);
 
+            /* soft-delete WOs by project_id */
+            $woRepo = new WORepository();
+            $wo_deletion_result = $woRepo->softDeleteByProjectID($id);
+
             /* 
-            if project_user deletion is successful,
+            if all of the children deletions are successful,
             then proceed to delete project
             */
 
