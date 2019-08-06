@@ -247,7 +247,6 @@ class ProjectController extends Controller
                 /* 
                 if there is any user IDs for current project,
                 get user objects by those IDs
-                and bind users to project object
                  */
                 $userRepo       = new UserRepository();
                 $project_users  = $userRepo->getUsersByIDs($project_user_IDs);
@@ -271,8 +270,6 @@ class ProjectController extends Controller
             return view('project.detail')
                 ->with('project', $project)
                 ->with('project_users', $project_users);
-            // ->with('project_user_IDs', $project_user_IDs)
-            // ->with('users', $users);
         } catch (\Exception $e) {
             /* if something went wrong, return to project list page with error message */
             return redirect()->action('ProjectController@index')->with('status', $e->getMessage());

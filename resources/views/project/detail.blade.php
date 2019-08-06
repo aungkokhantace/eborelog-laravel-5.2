@@ -88,6 +88,8 @@
                         </div>
                         <!-- end has_wo checkbox -->
 
+                        <!-- display the following fields only if "has_wo" is unchecked -->
+                        @if((isset($project)) && ($project->has_wo == 0))
                         <!-- start location field -->
                         <div class="form-group has_wo_field">
                             <label for="location">Location<span class="required_field">*</span></label>
@@ -123,6 +125,7 @@
                             </ul>
                         </div>
                         <!-- end assign_to_users field -->
+                        @endif
 
                         <!-- go back button -->
                         <a href="/projects"><button type="button" class="btn btn-primary"> Back to project list </button></a>
@@ -135,11 +138,6 @@
 
     @section('page_script')
     <script type="text/javascript">
-        $(document).ready(function() {
-            //check on page load, if has_wo is checked, hide corresponding fields
-            if ($('#has_wo').is(":checked")) {
-                $(".has_wo_field").hide();
-            }
-        });
+        $(document).ready(function() {});
     </script>
     @endsection

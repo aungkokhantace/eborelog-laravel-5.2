@@ -75,7 +75,7 @@
                                     <p class="text-danger">{{$errors->first('location_plan')}}</p>
                                 </div>
                                 <!-- end location plan field -->
-                                
+
                                 <!-- start 'wo_start_date' field -->
                                 <div class="form-group">
                                     <label for="wo_start_date">WO Start Date<span class="required_field">*</span></label>
