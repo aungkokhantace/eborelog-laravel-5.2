@@ -50,7 +50,13 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::get('/wo/{project}/{wo}/edit', 'WOController@edit')->name('wo.edit');
     Route::put('/wo/{project}/{wo}/update', 'WOController@update')->name('wo.update');
     Route::delete('/wo/{project}/{wo}/destroy', 'WOController@destroy')->name('wo.destroy');
-    // Route::resource('wo', 'WOController');
+
+    /* setups for bore holes */
+    /* nationalities */
+    Route::resource('nationalities', 'NationalityController');
+
+    /* drillers */
+    Route::resource('drillers', 'DrilleraController');
 
     /* BH module */
 });

@@ -42,7 +42,7 @@ class UserEditRequest extends FormRequest
         return [
             'name.required' => 'User name is required',
             'email.required' => 'Email is required',
-            'email.unique' => 'Email is already occupied',
+            'email.unique' => 'Email is already taken',
             'phone.required' => 'Phone is required',
             'phone.numeric' => 'Phone must be numeric',
             'nric.required' => 'NRIC is required',

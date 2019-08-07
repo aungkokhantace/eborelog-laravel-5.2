@@ -32,7 +32,7 @@ class RoleEntryRequest extends FormRequest
     {
         return [
             'name.required' => 'Role name is required',
-            'name.unique' => 'Role name is already occupied',
+            'name.unique' => 'Role name is already taken',
         ];
     }
 }

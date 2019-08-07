@@ -14,7 +14,6 @@ class RolePermissionSeeder extends Seeder
         DB::table('role_permissions')->delete();
 
         $records = array(
-
             /* start admin permissions */
             // home page
             ['role_id' => 1, 'permission_id' => 1],
@@ -68,6 +67,14 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 55],
             ['role_id' => 1, 'permission_id' => 56],
             ['role_id' => 1, 'permission_id' => 57],
+
+            // nationality
+            ['role_id' => 1, 'permission_id' => 61],
+            ['role_id' => 1, 'permission_id' => 62],
+            ['role_id' => 1, 'permission_id' => 63],
+            ['role_id' => 1, 'permission_id' => 64],
+            ['role_id' => 1, 'permission_id' => 65],
+            ['role_id' => 1, 'permission_id' => 66],
 
             /* end admin permissions */
 

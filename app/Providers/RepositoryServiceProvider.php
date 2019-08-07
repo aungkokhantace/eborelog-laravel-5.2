@@ -29,5 +29,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Project\ProjectRepositoryInterface', 'App\Repositories\Project\ProjectRepository');
         $this->app->bind('App\Repositories\ProjectUser\ProjectUserRepositoryInterface', 'App\Repositories\ProjectUser\ProjectUserRepository');
         $this->app->bind('App\Repositories\WO\WORepositoryInterface', 'App\Repositories\WO\WORepository');
+        $this->app->bind('App\Repositories\Nationality\NationalityRepositoryInterface', 'App\Repositories\Nationality\NationalityRepository');
     }
 }

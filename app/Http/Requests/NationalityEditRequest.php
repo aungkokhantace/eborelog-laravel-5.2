@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Input;
 
-class RoleEditRequest extends FormRequest
+class NationalityEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +25,15 @@ class RoleEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:roles,name,' . $this->get('id') . ',id,deleted_at,NULL'
+            'name' => 'required|string|unique:nationalities,name,' . $this->get('id') . ',id,deleted_at,NULL',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Role name is required',
-            'name.unique' => 'Role name is already taken',
+            'name.required' => 'Name is required',
+            'name.unique' => 'Name is already taken',
         ];
     }
 }

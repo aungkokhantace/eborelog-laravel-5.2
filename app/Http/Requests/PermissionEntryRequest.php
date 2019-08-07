@@ -38,7 +38,7 @@ class PermissionEntryRequest extends FormRequest
             'permission_module_name.required' => 'Module name is required',
             'permission_action.required' => 'Action is required',
             'route_name.required' => 'Route name is required',
-            'route_name.unique' => 'Route name is already occupied',
+            'route_name.unique' => 'Route name is already taken',
             'method.required' => 'Form request method is required',
         ];
     }
