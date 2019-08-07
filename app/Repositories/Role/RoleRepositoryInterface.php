@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-07-01
- * Time: 06:26 PM
- */
-
 namespace App\Repositories\Role;
 
 interface RoleRepositoryInterface

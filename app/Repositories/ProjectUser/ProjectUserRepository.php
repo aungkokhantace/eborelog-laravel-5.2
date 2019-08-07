@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-08-03
- * Time: 08:45 AM
- */
-
 namespace App\Repositories\ProjectUser;
 
 use Illuminate\Support\Facades\DB;

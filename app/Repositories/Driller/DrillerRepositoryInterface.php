@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\Permission;
+namespace App\Repositories\Driller;
 
-interface PermissionRepositoryInterface
+interface DrillerRepositoryInterface
 {
     public function getObjs();
     public function create($paramObj);

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Repositories\Permission;
+namespace App\Repositories\Driller;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\Permission;
+use App\Models\Driller;
 use App\Core\ReturnMessage;
 use App\Core\Utility;
 
-class PermissionRepository implements PermissionRepositoryInterface
+class DrillerRepository implements DrillerRepositoryInterface
 {
     public function getObjs()
     {
-        $objs = Permission::all();
+        $objs = Driller::all();
         return $objs;
     }
 
@@ -20,7 +20,7 @@ class PermissionRepository implements PermissionRepositoryInterface
         /*
          Retrieve records as array 
          */
-        $table_name = (new Permission())->getTable();
+        $table_name = (new Driller())->getTable();
         $arr = DB::select("SELECT * FROM  $table_name WHERE deleted_at IS NULL");
         return $arr;
     }
@@ -42,7 +42,7 @@ class PermissionRepository implements PermissionRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "Permission is successfully created";
+            $returnObj['statusMessage'] = "Driller is successfully created";
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -69,7 +69,7 @@ class PermissionRepository implements PermissionRepositoryInterface
 
             /* set status to success and return */
             $returnObj['statusCode'] = ReturnMessage::OK;
-            $returnObj['statusMessage'] = "Permission is successfully updated";
+            $returnObj['statusMessage'] = "Driller is successfully updated";
             return $returnObj;
         } catch (\Exception $e) {
             /* there is an exception,
@@ -91,7 +91,7 @@ class PermissionRepository implements PermissionRepositoryInterface
 
         try {
             /* Retrieve record and add deleted_by value */
-            $tempObj = Permission::findOrFail($id);
+            $tempObj = Driller::findOrFail($id);
 
             if (!isset($tempObj)) {
                 // record not found
@@ -103,18 +103,18 @@ class PermissionRepository implements PermissionRepositoryInterface
             }
 
             /*  Then, softdelete the record and store the delete result */
-            $delete_result = Permission::destroy($id);
+            $delete_result = Driller::destroy($id);
 
             if ($delete_result > 0) {
                 /* if delete_result is greater than 0, this means record is deleted,
                 set statusCode to success, and return */
                 $returnObj['statusCode'] = ReturnMessage::OK;
-                $returnObj['statusMessage'] = "Permission is successfully deleted";
+                $returnObj['statusMessage'] = "Driller is successfully deleted";
                 return $returnObj;
             } else {
                 /* Record is not deleted,
                 return with above-predefined INTERNAL_SERVER_ERROR */
-                $returnObj['statusMessage'] = "Permission is not deleted";
+                $returnObj['statusMessage'] = "Driller is not deleted";
                 return $returnObj;
             }
         } catch (\Exception $e) {
@@ -128,34 +128,7 @@ class PermissionRepository implements PermissionRepositoryInterface
     public function getObjByID($id)
     {
         /* retrieve an object by its id */
-        $result = Permission::findOrFail($id);
+        $result = Driller::findOrFail($id);
         return $result;
-    }
-
-    public static function getPermissionsByRoleId($role_id)
-    {
-        /* get available permissions for the given role */
-        $role_permissions = DB::table('role_permissions')
-            ->where('role_id', '=', $role_id)
-            ->get();
-
-        $result = array();
-
-        if (count($role_permissions) > 0) {
-
-            $countPermission = 0;
-
-            foreach ($role_permissions as $role_permission) {
-                $permission = Permission::where('id', '=', $role_permission->permission_id)
-                    ->whereNull('deleted_at')->firstOrFail()->toArray();
-
-                $result[$countPermission] = $permission;
-                $countPermission++;
-            }
-
-            return $result;
-        } else {
-            return null;
-        }
     }
 }

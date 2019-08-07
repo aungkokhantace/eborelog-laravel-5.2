@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Nationality extends Model
+class Driller extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'nationalities';
+    protected $table = 'drillers';
     /**
      * The attributes that are mass assignable.
      *
@@ -17,7 +17,7 @@ class Nationality extends Model
      */
 
     protected $fillable = [
-        'id', 'name',
+        'name', 'nric', 'permit_no', 'nationality_id',
         'created_by', 'updated_by', 'deleted_by',
         'created_at', 'updated_at', 'deleted_at'
     ];
@@ -36,8 +36,8 @@ class Nationality extends Model
      */
     protected $casts = [];
 
-    public function driller()
+    public function nationality()
     {
-        return $this->hasMany('App\Models\Driller');
+        return $this->belongsTo('App\Models\Nationality', 'nationality_id', 'id');
     }
 }

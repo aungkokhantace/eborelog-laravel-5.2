@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-07-30
- * Time: 02:18 PM
- */
-
 namespace App\Repositories\Nationality;
 
 interface NationalityRepositoryInterface

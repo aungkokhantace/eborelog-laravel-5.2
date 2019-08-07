@@ -1,19 +1,11 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-08-05
- * Time: 01:52 PM
- */
-
-
 namespace App\Repositories\WO;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\WO;
 use App\Core\ReturnMessage;
 use App\Core\Utility;
-use App\Log\LogCustom;
 
 class WORepository implements WORepositoryInterface
 {

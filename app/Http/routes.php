@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::resource('nationalities', 'NationalityController');
 
     /* drillers */
-    Route::resource('drillers', 'DrilleraController');
+    Route::resource('drillers', 'DrillerController');
 
     /* BH module */
 });

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Created Date: 2019-07-01
- * Created Time: 06:26 PM
- */
-
 namespace App\Repositories\Role;
 
 use Illuminate\Support\Facades\DB;

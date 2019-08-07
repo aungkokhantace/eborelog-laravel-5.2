@@ -74,9 +74,17 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
       </a>
       <div class="collapse" id="setups-for-bh">
         <ul class="nav flex-column sub-menu">
+          <!-- start nationalities -->
           @if(in_array("nationalities.index", $permissions))
           <li class="nav-item"> <a class="nav-link" href="/nationalities"> Nationalities </a></li>
           @endif
+          <!-- end nationalities -->
+
+          <!-- start drillers -->
+          @if(in_array("drillers.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/drillers"> Drillers </a></li>
+          @endif
+          <!-- end drillers -->
         </ul>
       </div>
     </li>

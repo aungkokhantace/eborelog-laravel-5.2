@@ -2,12 +2,6 @@
 
 namespace App\Core;
 
-/**
- * Author: Aung Ko Khant
- * Created Date: 2019-07-02
- * Created Time: 09:57 AM
- */
-
 use Auth;
 use File;
 use App\Http\Requests;

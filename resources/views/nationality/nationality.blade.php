@@ -15,6 +15,10 @@
                         <form class="forms-sample" id="nationality_form" method="post" action="/nationalities/{{$nationality->id}}">
                             <!-- form method spoofing -->
                             {{ method_field('PUT') }}
+
+
+                            <input type="hidden" id="id" name="id" value="{{$nationality->id}}">
+
                             @else
                             <!-- store route -->
                             <form class="forms-sample" id="nationality_form" method="post" action="/nationalities">
@@ -27,7 +31,7 @@
 
                                 <!-- start name field -->
                                 <div class="form-group">
-                                    <label for="name">Module<span class="required_field">*</span></label>
+                                    <label for="name">Name<span class="required_field">*</span></label>
                                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name" name="name" placeholder="Enter nationality name" value="{{ isset($nationality)? $nationality->name : old('name') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('name')}}</p>
@@ -52,7 +56,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //Start Validation for Entry and Edit Form
-            $('#nationality_forms').validate({
+            $('#nationality_form').validate({
                 rules: {
                     name: 'required',
                 },

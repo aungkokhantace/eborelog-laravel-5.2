@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-08-01
- * Time: 09:58 AM
- */
-
 namespace App\Repositories\Project;
 
 interface ProjectRepositoryInterface

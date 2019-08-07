@@ -1,18 +1,11 @@
 <?php
 
-/**
- * Author: Aung Ko Khant
- * Date: 2019-07-30
- * Time: 02:18 PM
- */
-
 namespace App\Repositories\Nationality;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Nationality;
 use App\Core\ReturnMessage;
 use App\Core\Utility;
-use App\Log\LogCustom;
 
 class NationalityRepository implements NationalityRepositoryInterface
 {
