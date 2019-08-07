@@ -215,9 +215,64 @@ class WOController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($project_id, $id)
     {
-        //
+        $projectRepo = new ProjectRepository();
+        $project = $projectRepo->getObjByID($project_id);
+        $project_id_name = $project->project_id;
+
+        /* retrieve the object by id and display edit form */
+        $wo = $this->repo->getObjByID($id);
+
+        /* change date formats to display in edit form */
+        $wo->wo_start_date = date('d-m-Y', strtotime($wo->wo_start_date));
+        $wo->wo_completion_date = date('d-m-Y', strtotime($wo->wo_completion_date));
+
+        // get users to display in assign_to_users section
+        $configRepo = new ConfigRepository();
+        $roles_to_be_assigned_to_projects = $configRepo->getRolesAssignedToProjects();
+
+        // convert to array
+        $role_id_array = explode(",", $roles_to_be_assigned_to_projects);
+
+        /* get all users */
+        $userRepo = new UserRepository();
+        $users    = $userRepo->getUsersByRoles($role_id_array);
+
+        /* get user IDs assigned to project */
+        $projectUserRepo = new ProjectUserRepository();
+        $wo_user_IDs   = $projectUserRepo->getUserIDsByProjectIDAndWoID($project_id, $id);
+
+        if (isset($wo_user_IDs) && count($wo_user_IDs) > 0) {
+            /* 
+                if there is any user IDs for current project,
+                get user objects by those IDs
+                 */
+            $userRepo       = new UserRepository();
+            $wo_users  = $userRepo->getUsersByIDs($wo_user_IDs);
+        } else {
+            /* set project->users to empty array */
+            $project_users = [];
+        }
+
+        /* 
+        if project start date or completion date is equal to "01-01-1970" 
+        change date to null
+        */
+        if ($wo->wo_start_date == "01-01-1970") {
+            $wo->wo_start_date = null;
+        }
+        if ($wo->wo_completion_date == "01-01-1970") {
+            $wo->wo_completion_date = null;
+        }
+
+        return view('wo.detail')
+            ->with('project_id', $project_id)
+            ->with('project_id_name', $project_id_name)
+            ->with('wo', $wo)
+            ->with('users', $users)
+            ->with('wo_users', $wo_users)
+            ->with('wo_user_IDs', $wo_user_IDs);
     }
 
     /**

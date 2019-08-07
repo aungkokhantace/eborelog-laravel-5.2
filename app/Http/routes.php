@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::get('/wo/{project}', 'WOController@index')->name('wo.index');
     Route::get('/wo/{project}/create', 'WOController@create')->name('wo.create');
     Route::post('/wo/{project}/store', 'WOController@store')->name('wo.store');
-    Route::get('/wo/{project}/{wo}', 'WOController@edit')->name('wo.show');
+    Route::get('/wo/{project}/{wo}', 'WOController@show')->name('wo.show');
     Route::get('/wo/{project}/{wo}/edit', 'WOController@edit')->name('wo.edit');
     Route::put('/wo/{project}/{wo}/update', 'WOController@update')->name('wo.update');
     Route::delete('/wo/{project}/{wo}/destroy', 'WOController@destroy')->name('wo.destroy');

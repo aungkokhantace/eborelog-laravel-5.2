@@ -109,7 +109,7 @@
                         <!-- start number_of_BH field -->
                         <div class="form-group has_wo_field">
                             <label for="number_of_bh">Number of bore holes</label>
-                            <input type="number" readonly min="1" class="form-control" id="number_of_bh" name="number_of_bh" placeholder="Enter number of bore holes" value="{{ isset($project)? $project->number_of_bh : old('number_of_bh') }}">
+                            <input type="text" readonly class="form-control" id="number_of_bh" name="number_of_bh" placeholder="Enter number of bore holes" value="{{ isset($project)? $project->number_of_bh : old('number_of_bh') }}">
                         </div>
                         <!-- end number_of_BH field -->
 
@@ -127,12 +127,13 @@
                         <!-- end assign_to_users field -->
                         @endif
 
-                        <!-- go back button -->
+                        <!-- start go back button -->
                         <a href="/projects">
                             <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Go back to project list">
                                 <i class="mdi mdi-arrow-left-bold"></i> Project List
                             </button>
                         </a>
+                        <!-- end go back button -->
                     </div>
                 </div>
             </div>

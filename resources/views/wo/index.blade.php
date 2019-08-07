@@ -65,7 +65,15 @@
                                         <td>{{ date('d-m-Y', strtotime($wo->wo_completion_date)) }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">
+                                                <!-- start view detail button -->
+                                                <a href="/wo/{{$project_id}}/{{$wo->id}}"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="View detail"><i class="mdi mdi-file-document-box"></i></button></a>
+                                                <!-- end view detail button -->
+
+                                                <!-- start edit button -->
                                                 <a href="/wo/{{$project_id}}/{{$wo->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this wo"><i class="mdi mdi-pencil"></i></button></a>
+                                                <!-- end edit button -->
+
+                                                <!-- start delete button -->
                                                 <form class="delete_form" action="/wo/{{$project_id}}/{{$wo->id}}/destroy" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
@@ -75,6 +83,7 @@
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>
+                                                <!-- end delete button -->
                                             </div>
                                         </td>
                         </div>

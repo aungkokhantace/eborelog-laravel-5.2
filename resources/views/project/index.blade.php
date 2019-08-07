@@ -70,12 +70,15 @@
                                         <td>
                                             <!-- start button group -->
                                             <div class=" btn-group float-right" role="group">
-                                                <!-- start role permission button -->
+                                                <!-- start view detail button -->
                                                 <a href="/projects/{{$project->id}}"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="View detail"><i class="mdi mdi-file-document-box"></i></button></a>
-                                                <!-- end role permission button -->
+                                                <!-- end view detail button -->
 
+                                                <!-- start edit button -->
                                                 <a href="/projects/{{$project->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this project"><i class="mdi mdi-pencil"></i></button></a>
+                                                <!-- end edit button -->
 
+                                                <!-- start delete button -->
                                                 <form class="delete_form" action="/projects/{{$project->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
@@ -85,6 +88,7 @@
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>
+                                                <!-- end delete button -->
                                             </div>
                                             <!-- end button group -->
                                         </td>
