@@ -52,14 +52,11 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::delete('/wo/{project}/{wo}/destroy', 'WOController@destroy')->name('wo.destroy');
 
     /* setups for bore holes */
-    /* nationalities */
     Route::resource('nationalities', 'NationalityController');
-    /* drillers */
     Route::resource('drillers', 'DrillerController');
-    /* casings */
     Route::resource('casings', 'CasingController');
-    /* drilling companies */
     Route::resource('drilling_companies', 'DrillingCompanyController');
+    Route::resource('drilling_rigs', 'DrillingRigController');
 
     /* BH module */
 });

@@ -56,7 +56,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //Start Validation for Entry and Edit Form
-            $('#drilling_company_forms').validate({
+            $('#drilling_company_form').validate({
                 rules: {
                     name: 'required',
                 },

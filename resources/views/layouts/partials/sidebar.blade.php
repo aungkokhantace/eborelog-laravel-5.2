@@ -68,7 +68,8 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     @if(in_array("nationalities.index", $permissions) ||
     in_array("drillers.index", $permissions) ||
     in_array("casings.index", $permissions) ||
-    in_array("drilling_companies.index", $permissions)
+    in_array("drilling_companies.index", $permissions) ||
+    in_array("drilling_rigs.index", $permissions)
     )
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#setups-for-bh" aria-expanded="false" aria-controls="auth">
@@ -101,6 +102,12 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
           <li class="nav-item"> <a class="nav-link" href="/drilling_companies"> Drilling Companies </a></li>
           @endif
           <!-- end drilling_companies -->
+
+          <!-- start drilling_rigs -->
+          @if(in_array("drilling_rigs.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/drilling_rigs"> Drilling Rigs </a></li>
+          @endif
+          <!-- end drilling_rigs -->
         </ul>
       </div>
     </li>

@@ -100,14 +100,23 @@ class PermissionSeeder extends Seeder
             ['id' => '86', 'module' => 'Casings', 'action' => 'Delete', 'description' => 'Delete casing', 'route_name' => 'casings.destroy', 'method' => 'delete'],
             // end casings
 
-            // start casings
+            // start drilling_companies
             ['id' => '91', 'module' => 'Drilling_Companies', 'action' => 'List', 'description' => 'Display drilling company list', 'route_name' => 'drilling_companies.index', 'method' => 'get'],
             ['id' => '92', 'module' => 'Drilling_Companies', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'drilling_companies.create', 'method' => 'get'],
             ['id' => '93', 'module' => 'Drilling_Companies', 'action' => 'Store', 'description' => 'Store a new drilling company', 'route_name' => 'drilling_companies.store', 'method' => 'post'],
             ['id' => '94', 'module' => 'Drilling_Companies', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'drilling_companies.edit', 'method' => 'get'],
             ['id' => '95', 'module' => 'Drilling_Companies', 'action' => 'Update', 'description' => 'Update drilling company', 'route_name' => 'drilling_companies.update', 'method' => 'put'],
             ['id' => '96', 'module' => 'Drilling_Companies', 'action' => 'Delete', 'description' => 'Delete drilling company', 'route_name' => 'drilling_companies.destroy', 'method' => 'delete'],
-            // end casings
+            // end drilling_companies
+
+            // start drilling_rigs
+            ['id' => '101', 'module' => 'Drilling_Rigs', 'action' => 'List', 'description' => 'Display drilling rig list', 'route_name' => 'drilling_rigs.index', 'method' => 'get'],
+            ['id' => '102', 'module' => 'Drilling_Rigs', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'drilling_rigs.create', 'method' => 'get'],
+            ['id' => '103', 'module' => 'Drilling_Rigs', 'action' => 'Store', 'description' => 'Store a new drilling rig', 'route_name' => 'drilling_rigs.store', 'method' => 'post'],
+            ['id' => '104', 'module' => 'Drilling_Rigs', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'drilling_rigs.edit', 'method' => 'get'],
+            ['id' => '105', 'module' => 'Drilling_Rigs', 'action' => 'Update', 'description' => 'Update drilling rig', 'route_name' => 'drilling_rigs.update', 'method' => 'put'],
+            ['id' => '106', 'module' => 'Drilling_Rigs', 'action' => 'Delete', 'description' => 'Delete drilling rig', 'route_name' => 'drilling_rigs.destroy', 'method' => 'delete'],
+            // end drilling_rigs
 
             // end setups for bore hole module
         );
