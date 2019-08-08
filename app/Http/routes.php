@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::resource('drillers', 'DrillerController');
     /* casings */
     Route::resource('casings', 'CasingController');
+    /* drilling companies */
+    Route::resource('drilling_companies', 'DrillingCompanyController');
 
     /* BH module */
 });

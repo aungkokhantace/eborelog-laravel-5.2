@@ -32,5 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Nationality\NationalityRepositoryInterface', 'App\Repositories\Nationality\NationalityRepository');
         $this->app->bind('App\Repositories\Driller\DrillerRepositoryInterface', 'App\Repositories\Driller\DrillerRepository');
         $this->app->bind('App\Repositories\Casing\CasingRepositoryInterface', 'App\Repositories\Casing\CasingRepository');
+        $this->app->bind('App\Repositories\DrillingCompany\DrillingCompanyRepositoryInterface', 'App\Repositories\DrillingCompany\DrillingCompanyRepository');
     }
 }

@@ -100,6 +100,15 @@ class PermissionSeeder extends Seeder
             ['id' => '86', 'module' => 'Casings', 'action' => 'Delete', 'description' => 'Delete casing', 'route_name' => 'casings.destroy', 'method' => 'delete'],
             // end casings
 
+            // start casings
+            ['id' => '91', 'module' => 'Drilling_Companies', 'action' => 'List', 'description' => 'Display drilling company list', 'route_name' => 'drilling_companies.index', 'method' => 'get'],
+            ['id' => '92', 'module' => 'Drilling_Companies', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'drilling_companies.create', 'method' => 'get'],
+            ['id' => '93', 'module' => 'Drilling_Companies', 'action' => 'Store', 'description' => 'Store a new drilling company', 'route_name' => 'drilling_companies.store', 'method' => 'post'],
+            ['id' => '94', 'module' => 'Drilling_Companies', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'drilling_companies.edit', 'method' => 'get'],
+            ['id' => '95', 'module' => 'Drilling_Companies', 'action' => 'Update', 'description' => 'Update drilling company', 'route_name' => 'drilling_companies.update', 'method' => 'put'],
+            ['id' => '96', 'module' => 'Drilling_Companies', 'action' => 'Delete', 'description' => 'Delete drilling company', 'route_name' => 'drilling_companies.destroy', 'method' => 'delete'],
+            // end casings
+
             // end setups for bore hole module
         );
 
