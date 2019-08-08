@@ -26,3 +26,8 @@
 .edit_form_image {
     max-width: 100%;
 }
+
+/* for datatable blinking on pageload issue */
+.list-view-table {
+    display: none;
+}

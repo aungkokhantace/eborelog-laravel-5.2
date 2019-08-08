@@ -64,7 +64,13 @@
     }, 5000);
 
     /* for datatable */
-    $('.list-view-table').DataTable();
+    $('.list-view-table').DataTable({
+      // display datatable only after loading is complete 
+      // (to prevent table is flashing on pageload issue)
+      "initComplete": function() {
+        $(".list-view-table").show();
+      }
+    });
 
     /* for tooltips */
     $(function() {

@@ -54,9 +54,10 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     /* setups for bore holes */
     /* nationalities */
     Route::resource('nationalities', 'NationalityController');
-
     /* drillers */
     Route::resource('drillers', 'DrillerController');
+    /* casings */
+    Route::resource('casings', 'CasingController');
 
     /* BH module */
 });

@@ -65,7 +65,10 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
 
 
     <!-- start setups for bore holes -->
-    @if(in_array("nationalities.index", $permissions))
+    @if(in_array("nationalities.index", $permissions) ||
+    in_array("drillers.index", $permissions) ||
+    in_array("casings.index", $permissions)
+    )
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#setups-for-bh" aria-expanded="false" aria-controls="auth">
         <i class="mdi mdi-altimeter menu-icon"></i>
@@ -85,6 +88,12 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
           <li class="nav-item"> <a class="nav-link" href="/drillers"> Drillers </a></li>
           @endif
           <!-- end drillers -->
+
+          <!-- start casings -->
+          @if(in_array("casings.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/casings"> Casings </a></li>
+          @endif
+          <!-- end casings -->
         </ul>
       </div>
     </li>

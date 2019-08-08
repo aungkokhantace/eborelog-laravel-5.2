@@ -91,6 +91,15 @@ class PermissionSeeder extends Seeder
             ['id' => '76', 'module' => 'Drillers', 'action' => 'Delete', 'description' => 'Delete driller', 'route_name' => 'drillers.destroy', 'method' => 'delete'],
             // end drillers
 
+            // start casings
+            ['id' => '81', 'module' => 'Casings', 'action' => 'List', 'description' => 'Display casing list', 'route_name' => 'casings.index', 'method' => 'get'],
+            ['id' => '82', 'module' => 'Casings', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'casings.create', 'method' => 'get'],
+            ['id' => '83', 'module' => 'Casings', 'action' => 'Store', 'description' => 'Store a new casing', 'route_name' => 'casings.store', 'method' => 'post'],
+            ['id' => '84', 'module' => 'Casings', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'casings.edit', 'method' => 'get'],
+            ['id' => '85', 'module' => 'Casings', 'action' => 'Update', 'description' => 'Update casing', 'route_name' => 'casings.update', 'method' => 'put'],
+            ['id' => '86', 'module' => 'Casings', 'action' => 'Delete', 'description' => 'Delete casing', 'route_name' => 'casings.destroy', 'method' => 'delete'],
+            // end casings
+
             // end setups for bore hole module
         );
 
