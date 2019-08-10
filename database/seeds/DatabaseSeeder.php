@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigSeeder::class);
         $this->call(CasingSeeder::class);
         $this->call(DrillingMethodSeeder::class);
+        $this->call(SPTMethodSeeder::class);
     }
 }

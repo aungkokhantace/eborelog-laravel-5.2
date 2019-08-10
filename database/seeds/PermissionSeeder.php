@@ -127,6 +127,15 @@ class PermissionSeeder extends Seeder
             ['id' => '116', 'module' => 'Drilling_Methods', 'action' => 'Delete', 'description' => 'Delete drilling method', 'route_name' => 'drilling_methods.destroy', 'method' => 'delete'],
             // end drilling_methods
 
+            // start spt_methods
+            ['id' => '121', 'module' => 'SPT_Methods', 'action' => 'List', 'description' => 'Display spt method list', 'route_name' => 'spt_methods.index', 'method' => 'get'],
+            ['id' => '122', 'module' => 'SPT_Methods', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'spt_methods.create', 'method' => 'get'],
+            ['id' => '123', 'module' => 'SPT_Methods', 'action' => 'Store', 'description' => 'Store a new spt method', 'route_name' => 'spt_methods.store', 'method' => 'post'],
+            ['id' => '124', 'module' => 'SPT_Methods', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'spt_methods.edit', 'method' => 'get'],
+            ['id' => '125', 'module' => 'SPT_Methods', 'action' => 'Update', 'description' => 'Update spt method', 'route_name' => 'spt_methods.update', 'method' => 'put'],
+            ['id' => '126', 'module' => 'SPT_Methods', 'action' => 'Delete', 'description' => 'Delete spt method', 'route_name' => 'spt_methods.destroy', 'method' => 'delete'],
+            // end spt_methods
+
             // end setups for bore hole module
         );
 

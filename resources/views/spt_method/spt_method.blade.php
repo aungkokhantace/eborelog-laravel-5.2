@@ -7,31 +7,31 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">{{ isset($drilling_method)? "UPDATE" : "CREATE" }} DRILLING METHOD</h4>
+                        <h4 class="card-title">{{ isset($spt_method)? "UPDATE" : "CREATE" }} SPT METHOD</h4>
 
                         <!-- start form -->
-                        @if(isset($drilling_method))
+                        @if(isset($spt_method))
                         <!-- update route -->
-                        <form class="forms-sample" id="drilling_method_form" method="post" action="/drilling_methods/{{$drilling_method->id}}">
+                        <form class="forms-sample" id="spt_method_form" method="post" action="/spt_methods/{{$spt_method->id}}">
                             <!-- form method spoofing -->
                             {{ method_field('PUT') }}
 
-                            <input type="hidden" id="id" name="id" value="{{$drilling_method->id}}">
+                            <input type="hidden" id="id" name="id" value="{{$spt_method->id}}">
 
                             @else
                             <!-- store route -->
-                            <form class="forms-sample" id="drilling_method_form" method="post" action="/drilling_methods">
+                            <form class="forms-sample" id="spt_method_form" method="post" action="/spt_methods">
                                 @endif
 
                                 {{ csrf_field() }}
 
                                 <!-- to use in redirect function when clicking cancel button on entry and edit pages -->
-                                <input type="hidden" id="module" name="module" value="drilling_methods">
+                                <input type="hidden" id="module" name="module" value="spt_methods">
 
                                 <!-- start name field -->
                                 <div class="form-group">
                                     <label for="name">Name<span class="required_field">*</span></label>
-                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name" name="name" placeholder="Enter name" value="{{ isset($drilling_method)? $drilling_method->name : old('name') }}">
+                                    <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' :''}}" id="name" name="name" placeholder="Enter name" value="{{ isset($spt_method)? $spt_method->name : old('name') }}">
                                     <!-- validation error message -->
                                     <p class="text-danger">{{$errors->first('name')}}</p>
                                 </div>
@@ -55,7 +55,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //Start Validation for Entry and Edit Form
-            $('#drilling_method_form').validate({
+            $('#spt_method_form').validate({
                 rules: {
                     name: 'required',
                 },
