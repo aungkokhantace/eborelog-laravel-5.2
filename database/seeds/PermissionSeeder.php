@@ -118,6 +118,15 @@ class PermissionSeeder extends Seeder
             ['id' => '106', 'module' => 'Drilling_Rigs', 'action' => 'Delete', 'description' => 'Delete drilling rig', 'route_name' => 'drilling_rigs.destroy', 'method' => 'delete'],
             // end drilling_rigs
 
+            // start drilling_methods
+            ['id' => '111', 'module' => 'Drilling_Methods', 'action' => 'List', 'description' => 'Display drilling method list', 'route_name' => 'drilling_methods.index', 'method' => 'get'],
+            ['id' => '112', 'module' => 'Drilling_Methods', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'drilling_methods.create', 'method' => 'get'],
+            ['id' => '113', 'module' => 'Drilling_Methods', 'action' => 'Store', 'description' => 'Store a new drilling method', 'route_name' => 'drilling_methods.store', 'method' => 'post'],
+            ['id' => '114', 'module' => 'Drilling_Methods', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'drilling_methods.edit', 'method' => 'get'],
+            ['id' => '115', 'module' => 'Drilling_Methods', 'action' => 'Update', 'description' => 'Update drilling method', 'route_name' => 'drilling_methods.update', 'method' => 'put'],
+            ['id' => '116', 'module' => 'Drilling_Methods', 'action' => 'Delete', 'description' => 'Delete drilling method', 'route_name' => 'drilling_methods.destroy', 'method' => 'delete'],
+            // end drilling_methods
+
             // end setups for bore hole module
         );
 

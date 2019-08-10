@@ -117,7 +117,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //Start Validation for Entry and Edit Form
-            $('#drilling_rig_forms').validate({
+            $('#drilling_rig_form').validate({
                 rules: {
                     rig_no: 'required',
                     model: 'required',
