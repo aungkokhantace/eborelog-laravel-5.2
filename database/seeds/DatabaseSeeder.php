@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CasingSeeder::class);
         $this->call(DrillingMethodSeeder::class);
         $this->call(SPTMethodSeeder::class);
+        $this->call(CoringMethodSeeder::class);
     }
 }

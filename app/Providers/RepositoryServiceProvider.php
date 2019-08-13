@@ -36,5 +36,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\DrillingRig\DrillingRigRepositoryInterface', 'App\Repositories\DrillingRig\DrillingRigRepository');
         $this->app->bind('App\Repositories\DrillingMethod\DrillingMethodRepositoryInterface', 'App\Repositories\DrillingMethod\DrillingMethodRepository');
         $this->app->bind('App\Repositories\SPTMethod\SPTMethodRepositoryInterface', 'App\Repositories\SPTMethod\SPTMethodRepository');
+        $this->app->bind('App\Repositories\CoringMethod\CoringMethodRepositoryInterface', 'App\Repositories\CoringMethod\CoringMethodRepository');
     }
 }

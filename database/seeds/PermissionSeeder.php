@@ -136,6 +136,15 @@ class PermissionSeeder extends Seeder
             ['id' => '126', 'module' => 'SPT_Methods', 'action' => 'Delete', 'description' => 'Delete spt method', 'route_name' => 'spt_methods.destroy', 'method' => 'delete'],
             // end spt_methods
 
+            // start coring_methods
+            ['id' => '131', 'module' => 'Coring_Methods', 'action' => 'List', 'description' => 'Display coring method list', 'route_name' => 'coring_methods.index', 'method' => 'get'],
+            ['id' => '132', 'module' => 'Coring_Methods', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'coring_methods.create', 'method' => 'get'],
+            ['id' => '133', 'module' => 'Coring_Methods', 'action' => 'Store', 'description' => 'Store a new coring method', 'route_name' => 'coring_methods.store', 'method' => 'post'],
+            ['id' => '134', 'module' => 'Coring_Methods', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'coring_methods.edit', 'method' => 'get'],
+            ['id' => '135', 'module' => 'Coring_Methods', 'action' => 'Update', 'description' => 'Update coring method', 'route_name' => 'coring_methods.update', 'method' => 'put'],
+            ['id' => '136', 'module' => 'Coring_Methods', 'action' => 'Delete', 'description' => 'Delete coring method', 'route_name' => 'coring_methods.destroy', 'method' => 'delete'],
+            // end coring_methods
+
             // end setups for bore hole module
         );
 

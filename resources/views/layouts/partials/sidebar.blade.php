@@ -12,7 +12,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     <li class="nav-item">
       <a class="nav-link" href="/home">
         <i class="mdi mdi-home menu-icon"></i>
-        <span class="menu-title">Dashboard</span>
+        <span class="menu-title"> Dashboard </span>
       </a>
     </li>
     @endif
@@ -24,7 +24,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#role-permission" aria-expanded="false" aria-controls="auth">
         <i class="mdi mdi-account-key menu-icon"></i>
-        <span class="menu-title">Roles/Permissions</span>
+        <span class="menu-title"> Roles/Permissions </span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="role-permission">
@@ -46,7 +46,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     <li class="nav-item">
       <a class="nav-link" href="/users">
         <i class="mdi mdi-account-multiple menu-icon"></i>
-        <span class="menu-title">Users</span>
+        <span class="menu-title"> Users </span>
       </a>
     </li>
     @endif
@@ -57,7 +57,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     <li class="nav-item">
       <a class="nav-link" href="/projects">
         <i class="mdi mdi-briefcase menu-icon"></i>
-        <span class="menu-title">Projects</span>
+        <span class="menu-title"> Projects </span>
       </a>
     </li>
     @endif
@@ -71,12 +71,13 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     in_array("drilling_companies.index", $permissions) ||
     in_array("drilling_rigs.index", $permissions) ||
     in_array("drilling_methods.index", $permissions) ||
-    in_array("spt_methods.index", $permissions)
+    in_array("spt_methods.index", $permissions) ||
+    in_array("coring_methods.index", $permissions)
     )
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#setups-for-bh" aria-expanded="false" aria-controls="auth">
         <i class="mdi mdi-altimeter menu-icon"></i>
-        <span class="menu-title">Setup for Bore Holes</span>
+        <span class="menu-title"> Setup for Bore Holes </span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="setups-for-bh">
@@ -122,6 +123,12 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
           <li class="nav-item"> <a class="nav-link" href="/spt_methods"> SPT Methods </a></li>
           @endif
           <!-- end spt_methods -->
+
+          <!-- start coring_methods -->
+          @if(in_array("coring_methods.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/coring_methods"> Coring Methods </a></li>
+          @endif
+          <!-- end coring_methods -->
         </ul>
       </div>
     </li>
@@ -133,7 +140,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     <li class="nav-item">
       <a class="nav-link" href="/config">
         <i class="mdi mdi-cogs menu-icon"></i>
-        <span class="menu-title">Config</span>
+        <span class="menu-title"> Config </span>
       </a>
     </li>
     @endif

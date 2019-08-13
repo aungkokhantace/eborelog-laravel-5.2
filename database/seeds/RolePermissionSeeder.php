@@ -124,6 +124,14 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 125],
             ['role_id' => 1, 'permission_id' => 126],
 
+            // coring_method
+            ['role_id' => 1, 'permission_id' => 131],
+            ['role_id' => 1, 'permission_id' => 132],
+            ['role_id' => 1, 'permission_id' => 133],
+            ['role_id' => 1, 'permission_id' => 134],
+            ['role_id' => 1, 'permission_id' => 135],
+            ['role_id' => 1, 'permission_id' => 136],
+
             /* end admin permissions */
 
             /* start supervisor permissions */
