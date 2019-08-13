@@ -132,6 +132,14 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 135],
             ['role_id' => 1, 'permission_id' => 136],
 
+            // drilling_fluid
+            ['role_id' => 1, 'permission_id' => 141],
+            ['role_id' => 1, 'permission_id' => 142],
+            ['role_id' => 1, 'permission_id' => 143],
+            ['role_id' => 1, 'permission_id' => 144],
+            ['role_id' => 1, 'permission_id' => 145],
+            ['role_id' => 1, 'permission_id' => 146],
+
             /* end admin permissions */
 
             /* start supervisor permissions */

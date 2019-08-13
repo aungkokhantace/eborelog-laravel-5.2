@@ -145,6 +145,15 @@ class PermissionSeeder extends Seeder
             ['id' => '136', 'module' => 'Coring_Methods', 'action' => 'Delete', 'description' => 'Delete coring method', 'route_name' => 'coring_methods.destroy', 'method' => 'delete'],
             // end coring_methods
 
+            // start drilling_fluids
+            ['id' => '141', 'module' => 'Drilling_Fluids', 'action' => 'List', 'description' => 'Display drilling fluid list', 'route_name' => 'drilling_fluids.index', 'method' => 'get'],
+            ['id' => '142', 'module' => 'Drilling_Fluids', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'drilling_fluids.create', 'method' => 'get'],
+            ['id' => '143', 'module' => 'Drilling_Fluids', 'action' => 'Store', 'description' => 'Store a new drilling fluid', 'route_name' => 'drilling_fluids.store', 'method' => 'post'],
+            ['id' => '144', 'module' => 'Drilling_Fluids', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'drilling_fluids.edit', 'method' => 'get'],
+            ['id' => '145', 'module' => 'Drilling_Fluids', 'action' => 'Update', 'description' => 'Update drilling fluid', 'route_name' => 'drilling_fluids.update', 'method' => 'put'],
+            ['id' => '146', 'module' => 'Drilling_Fluids', 'action' => 'Delete', 'description' => 'Delete drilling fluid', 'route_name' => 'drilling_fluids.destroy', 'method' => 'delete'],
+            // end drilling_fluids
+
             // end setups for bore hole module
         );
 

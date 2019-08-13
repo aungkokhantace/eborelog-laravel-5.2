@@ -72,7 +72,8 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     in_array("drilling_rigs.index", $permissions) ||
     in_array("drilling_methods.index", $permissions) ||
     in_array("spt_methods.index", $permissions) ||
-    in_array("coring_methods.index", $permissions)
+    in_array("coring_methods.index", $permissions) ||
+    in_array("drilling_fluids.index", $permissions)
     )
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#setups-for-bh" aria-expanded="false" aria-controls="auth">
@@ -129,6 +130,12 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
           <li class="nav-item"> <a class="nav-link" href="/coring_methods"> Coring Methods </a></li>
           @endif
           <!-- end coring_methods -->
+
+          <!-- start drilling_fluids -->
+          @if(in_array("drilling_fluids.index", $permissions))
+          <li class="nav-item"> <a class="nav-link" href="/drilling_fluids"> Drilling Fluids </a></li>
+          @endif
+          <!-- end drilling_fluids -->
         </ul>
       </div>
     </li>

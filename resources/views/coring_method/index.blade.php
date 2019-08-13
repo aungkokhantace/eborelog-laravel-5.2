@@ -19,7 +19,7 @@
 
                         <!-- start add new button -->
                         <div class="row">
-                            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-methodht ml-auto">
+                            <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
                                 <a href="/coring_methods/create">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new coring method">
                                         <i class="mdi mdi-plus"></i>

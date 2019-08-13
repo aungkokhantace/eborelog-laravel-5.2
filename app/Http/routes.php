@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::resource('drilling_methods', 'DrillingMethodController');
     Route::resource('spt_methods', 'SPTMethodController');
     Route::resource('coring_methods', 'CoringMethodController');
+    Route::resource('drilling_fluids', 'DrillingFluidController');
 
     /* BH module */
 });

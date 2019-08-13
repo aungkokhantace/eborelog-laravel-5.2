@@ -7,7 +7,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">SPT METHOD LIST</h4>
+                        <h4 class="card-title">DRILLING FLUID LIST</h4>
                         <!-- start alert -->
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -20,8 +20,8 @@
                         <!-- start add new button -->
                         <div class="row">
                             <div class="col-xs-12 col-sm-2 col-md-1 col-lg-1 float-right ml-auto">
-                                <a href="/spt_methods/create">
-                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new spt method">
+                                <a href="/drilling_fluids/create">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Create a new drilling fluid">
                                         <i class="mdi mdi-plus"></i>
                                     </button>
                                 </a>
@@ -41,19 +41,19 @@
                                 </thead>
                                 <tbody>
                                     <?php $counter = 1; ?>
-                                    @foreach($spt_methods as $spt_method)
+                                    @foreach($drilling_fluids as $drilling_fluid)
                                     <tr>
                                         <td>{{ $counter }}</td>
-                                        <td>{{ $spt_method->name }}</td>
+                                        <td>{{ $drilling_fluid->name }}</td>
                                         <td>
                                             <div class="btn-group float-right" role="group">
-                                                <a href="/spt_methods/{{$spt_method->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this spt method"><i class="mdi mdi-pencil"></i></button></a>
-                                                <form class="delete_form" action="/spt_methods/{{$spt_method->id}}" method="post">
+                                                <a href="/drilling_fluids/{{$drilling_fluid->id}}/edit"><button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Edit this drilling fluid"><i class="mdi mdi-pencil"></i></button></a>
+                                                <form class="delete_form" action="/drilling_fluids/{{$drilling_fluid->id}}" method="post">
                                                     {{ csrf_field() }}
                                                     <!-- form method spoofing -->
                                                     {{ method_field('DELETE') }}
 
-                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this spt method">
+                                                    <button type="submit" class="btn btn-danger delete_button" data-toggle="tooltip" data-placement="top" title="Delete this drilling fluid">
                                                         <i class="mdi mdi-delete"></i>
                                                     </button>
                                                 </form>
