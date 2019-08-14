@@ -18,6 +18,9 @@ class RolePermissionSeeder extends Seeder
             // home page
             ['role_id' => 1, 'permission_id' => 1],
 
+            // user home page
+            ['role_id' => 1, 'permission_id' => 2],
+
             // config
             ['role_id' => 1, 'permission_id' => 5],
             ['role_id' => 1, 'permission_id' => 6],
@@ -49,6 +52,7 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 36],
             ['role_id' => 1, 'permission_id' => 37],
             ['role_id' => 1, 'permission_id' => 38],
+            ['role_id' => 1, 'permission_id' => 39],
 
             // projects
             ['role_id' => 1, 'permission_id' => 41],
@@ -143,9 +147,12 @@ class RolePermissionSeeder extends Seeder
             /* end admin permissions */
 
             /* start supervisor permissions */
-            ['role_id' => 2, 'permission_id' => 1],
-            ['role_id' => 2, 'permission_id' => 37],
+            // user home page
+            ['role_id' => 2, 'permission_id' => 2],
+
+            // user profile
             ['role_id' => 2, 'permission_id' => 38],
+            ['role_id' => 2, 'permission_id' => 39],
 
             /* end supervisor permissions */
 

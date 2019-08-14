@@ -16,6 +16,7 @@ class PermissionSeeder extends Seeder
         $permissions = array(
             // start home page
             ['id' => '1', 'module' => 'Home', 'action' => 'Home Page', 'description' => 'Display home page', 'route_name' => 'home', 'method' => 'get'],
+            ['id' => '2', 'module' => 'User_Home', 'action' => 'User Home Page', 'description' => 'Display user home page', 'route_name' => 'user_home', 'method' => 'get'],
 
             ['id' => '5', 'module' => 'Config', 'action' => 'Edit', 'description' => 'Display config form', 'route_name' => 'config.edit', 'method' => 'get'],
             ['id' => '6', 'module' => 'Config', 'action' => 'Update', 'description' => 'Update config', 'route_name' => 'config.update', 'method' => 'post'],
@@ -50,6 +51,7 @@ class PermissionSeeder extends Seeder
             ['id' => '36', 'module' => 'User', 'action' => 'Delete', 'description' => 'Delete user', 'route_name' => 'users.destroy', 'method' => 'delete'],
             ['id' => '37', 'module' => 'User', 'action' => 'Show Profile', 'description' => 'Show user profile', 'route_name' => 'user.show_profile', 'method' => 'get'],
             ['id' => '38', 'module' => 'User', 'action' => 'Update Profile', 'description' => 'Update user profile', 'route_name' => 'user.update_profile', 'method' => 'put'],
+            ['id' => '39', 'module' => 'User', 'action' => 'Show User Profile', 'description' => 'Show non-admin user profile', 'route_name' => 'user.show_user_profile', 'method' => 'get'],
             // end users module
 
             // start projects module

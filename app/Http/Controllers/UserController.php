@@ -381,6 +381,30 @@ class UserController extends Controller
         // update the object using repository
         $result = $this->repo->update($userObj);
 
+        /* if the user is not admin, redirect to display user profile page */
+        if (isset($userObj) && $userObj->role_id == 2) {
+            return redirect()->action('UserController@showUserProfile')->with('status', $result['statusMessage']);
+        }
         return redirect()->action('UserController@showProfile')->with('status', $result['statusMessage']);
+    }
+
+    public function showUserProfile()
+    {
+        // get currently logged in user_id
+        $user_id = Utility::getCurrentUserID();
+        $user = $this->repo->getObjByID($user_id);
+
+        // get roles
+        $roleRepo = new RoleRepository();
+        $roles = $roleRepo->getObjs();
+
+        // get nationalities
+        $nationalityRepo = new NationalityRepository();
+        $nationalities = $nationalityRepo->getObjs();
+
+        return view('user.user_profile')
+            ->with('user', $user)
+            ->with('roles', $roles)
+            ->with('nationalities', $nationalities);
     }
 }

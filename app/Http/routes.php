@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/user_home', 'UserHomeController@index')->name('user_home');
+
     /* config */
     Route::get('/config', 'ConfigController@edit')->name('config.edit');
     Route::post('/config', 'ConfigController@update')->name('config.update');
@@ -37,6 +39,8 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     /* users */
     Route::get('/profile', 'UserController@showProfile')->name('user.show_profile');
     Route::put('/profile', 'UserController@updateProfile')->name('user.update_profile');
+    // display profile page for non-admin role
+    Route::get('/user_profile', 'UserController@showUserProfile')->name('user.show_user_profile');
     Route::resource('users', 'UserController');
 
     /* projects */

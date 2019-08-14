@@ -1,0 +1,5 @@
+@include('layouts.user_partials.user_header')
+@include('layouts.user_partials.user_navbar')
+@yield('content')
+@yield('page_script')
+@include('layouts.user_partials.user_footer')

@@ -31,3 +31,11 @@
 .list-view-table {
     display: none;
 }
+
+.main-panel-without-sidebar {
+    width: 100%;
+}
+
+.content-wrapper {
+    height: 100%;
+}
