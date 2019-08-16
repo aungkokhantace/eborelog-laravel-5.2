@@ -17,7 +17,7 @@
                                 <div class="d-flex flex-wrap justify-content-xl-between">
                                     <!-- <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item col-md-4 col-sm-12"> -->
                                     <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                                        <i class="mdi mdi-bulldozer icon-lg mr-3 text-primary"></i>
+                                        <i class="mdi mdi-briefcase icon-lg mr-3 text-primary"></i>
                                         <div class="d-flex flex-column justify-content-around">
                                             <small class="mb-1 text-muted">Total Projects</small>
                                             <h5 class="mr-2 mb-0"> {{isset($project_count)? $project_count : 0 }} </h5>

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\WO;
+namespace App\Repositories\BoreHole;
 
-interface WORepositoryInterface
+interface BoreHoleRepositoryInterface
 {
     public function getObjs();
     public function create($paramObj);
@@ -10,6 +10,6 @@ interface WORepositoryInterface
     public function getObjByID($id);
     public function destroy($id);
     public function getArrays();
-    public function getObjsByProjectID($project_id);
-    public function softDeleteByProjectID($project_id);
+    public function getObjsByProjectIdAndWOId($project_id, $wo_id);
+    public function softDeleteByProjectIDAndWOId($project_id, $wo_id);
 }

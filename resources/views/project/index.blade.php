@@ -63,7 +63,7 @@
                                             @if($project->has_wo)
                                             <a href="/wo/{{$project->id}}">WO List</a>
                                             @else
-                                            BH List
+                                            <a href="/bore_holes/{{$project->id}}/0">BH List</a>
                                             @endif
                                         </td>
                                         <td>{{ $project->notes }}</td>

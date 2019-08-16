@@ -66,6 +66,16 @@ Route::group(['middleware' => ['auth', 'role-permission']], function () {
     Route::resource('coring_methods', 'CoringMethodController');
     Route::resource('drilling_fluids', 'DrillingFluidController');
 
+    /* bore holes */
+    // Route::resource('bore_holes', 'BoreHoleController');
+    Route::get('/bore_holes/{project}/{wo}', 'BoreHoleController@index')->name('bore_holes.index');
+    Route::get('/bore_holes/{project}/{wo}/create', 'BoreHoleController@create')->name('bore_holes.create');
+    Route::post('/bore_holes/{project}/{wo}/store', 'BoreHoleController@store')->name('bore_holes.store');
+    Route::get('/bore_holes/{project}/{wo}/{bore_hole}', 'BoreHoleController@show')->name('bore_holes.show');
+    Route::get('/bore_holes/{project}/{wo}/{bore_hole}/edit', 'BoreHoleController@edit')->name('bore_holes.edit');
+    Route::put('/bore_holes/{project}/{wo}/{bore_hole}/update', 'BoreHoleController@update')->name('bore_holes.update');
+    Route::delete('/bore_holes/{project}/{wo}/{bore_hole}/destroy', 'BoreHoleController@destroy')->name('bore_holes.destroy');
+
     /* BH module */
 });
 

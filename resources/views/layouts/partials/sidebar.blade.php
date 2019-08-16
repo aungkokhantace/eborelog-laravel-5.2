@@ -63,7 +63,6 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     @endif
     <!-- end projects -->
 
-
     <!-- start setups for bore holes -->
     @if(in_array("nationalities.index", $permissions) ||
     in_array("drillers.index", $permissions) ||
@@ -77,7 +76,7 @@ $permissions = \App\Core\Utility::getPermissionByRoleId($role_id);
     )
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#setups-for-bh" aria-expanded="false" aria-controls="auth">
-        <i class="mdi mdi-altimeter menu-icon"></i>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         <span class="menu-title"> Setup for Bore Holes </span>
         <i class="menu-arrow"></i>
       </a>

@@ -155,8 +155,16 @@ class PermissionSeeder extends Seeder
             ['id' => '145', 'module' => 'Drilling_Fluids', 'action' => 'Update', 'description' => 'Update drilling fluid', 'route_name' => 'drilling_fluids.update', 'method' => 'put'],
             ['id' => '146', 'module' => 'Drilling_Fluids', 'action' => 'Delete', 'description' => 'Delete drilling fluid', 'route_name' => 'drilling_fluids.destroy', 'method' => 'delete'],
             // end drilling_fluids
-
             // end setups for bore hole module
+
+            // start bore_holes
+            ['id' => '151', 'module' => 'Bore_Holes', 'action' => 'List', 'description' => 'Display bore hole list', 'route_name' => 'bore_holes.index', 'method' => 'get'],
+            ['id' => '152', 'module' => 'Bore_Holes', 'action' => 'Create', 'description' => 'Display entry form', 'route_name' => 'bore_holes.create', 'method' => 'get'],
+            ['id' => '153', 'module' => 'Bore_Holes', 'action' => 'Store', 'description' => 'Store a new bore hole', 'route_name' => 'bore_holes.store', 'method' => 'post'],
+            ['id' => '154', 'module' => 'Bore_Holes', 'action' => 'Edit', 'description' => 'Display edit form', 'route_name' => 'bore_holes.edit', 'method' => 'get'],
+            ['id' => '155', 'module' => 'Bore_Holes', 'action' => 'Update', 'description' => 'Update bore hole', 'route_name' => 'bore_holes.update', 'method' => 'put'],
+            ['id' => '156', 'module' => 'Bore_Holes', 'action' => 'Delete', 'description' => 'Delete bore hole', 'route_name' => 'bore_holes.destroy', 'method' => 'delete'],
+            // end bore_holes
         );
 
         if (isset($existingPermissions) && count($existingPermissions) > 0) {

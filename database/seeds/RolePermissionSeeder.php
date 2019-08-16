@@ -72,6 +72,7 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 56],
             ['role_id' => 1, 'permission_id' => 57],
 
+            // start setups for bore_holes
             // nationality
             ['role_id' => 1, 'permission_id' => 61],
             ['role_id' => 1, 'permission_id' => 62],
@@ -143,6 +144,15 @@ class RolePermissionSeeder extends Seeder
             ['role_id' => 1, 'permission_id' => 144],
             ['role_id' => 1, 'permission_id' => 145],
             ['role_id' => 1, 'permission_id' => 146],
+            // end setups for bore_holes
+
+            // bore_holes
+            ['role_id' => 1, 'permission_id' => 151],
+            ['role_id' => 1, 'permission_id' => 152],
+            ['role_id' => 1, 'permission_id' => 153],
+            ['role_id' => 1, 'permission_id' => 154],
+            ['role_id' => 1, 'permission_id' => 155],
+            ['role_id' => 1, 'permission_id' => 156],
 
             /* end admin permissions */
 
